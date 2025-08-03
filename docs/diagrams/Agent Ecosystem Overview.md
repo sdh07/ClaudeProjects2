@@ -22,6 +22,7 @@ graph TB
     subgraph "Agent Categories"
         PC --> AA[Architecture Agents]
         PC --> IA[Implementation Agents]
+        PC --> DOA[Documentation Agents]
         PC --> VA[Validation Agents]
         PC --> EA[Evolution Agents]
         
@@ -36,7 +37,17 @@ graph TB
             IA --> CG[Code Generator]
             IA --> TB[Test Builder]
             IA --> APD[API Designer]
-            IA --> DA[Documentation Agent]
+            IA --> DA[Data Modeler]
+        end
+        
+        subgraph "Documentation Agents"
+            DOA --> DO[Doc Orchestrator]
+            DOA --> UGW[User Guide Writer]
+            DOA --> TC[Tutorial Creator]
+            DOA --> APID[API Documenter]
+            DOA --> ME[Methodology Explainer]
+            DOA --> VSW[Video Script Writer]
+            DOA --> IDC[Interactive Demo Creator]
         end
         
         subgraph "Validation Agents"
@@ -59,13 +70,17 @@ graph TB
         PS --> KB
         AW --> KB
         CG --> KB
-        DA --> KB
+        DO --> KB
+        UGW --> KB
+        TC --> KB
         CC --> KB
         KC --> KB
         
         KB --> OD[Obsidian Docs]
         KB --> GI[GitHub Issues]
         KB --> CD[CLAUDE.md]
+        KB --> UD[User Documentation]
+        KB --> VT[Video Tutorials]
     end
     
     subgraph "Integration Layer"
@@ -115,6 +130,13 @@ sequenceDiagram
 | Pattern Selector | Architectural pattern selection | Problem context, quality attributes | Pattern recommendations, rationale | Knowledge Base |
 | ADR Writer | Decision documentation | Decisions, context, alternatives | ADR documents | Knowledge Base |
 | Code Generator | Implementation from design | Architectural specs, APIs | Source code | Test Builder |
+| Doc Orchestrator | Coordinate documentation | Feature changes, user needs | Documentation plan | All doc agents |
+| User Guide Writer | End-user documentation | Features, workflows | User guides, help content | Doc Orchestrator |
+| Tutorial Creator | Learning materials | Features, learning objectives | Tutorials, exercises | Interactive Demo Creator |
+| API Documenter | Technical documentation | API specs, code | API docs, SDKs | Code Generator |
+| Methodology Explainer | Process documentation | Methodologies, patterns | Process guides, templates | Knowledge Base |
+| Video Script Writer | Multimedia content | Features, concepts | Video scripts, storyboards | Tutorial Creator |
+| Interactive Demo Creator | Hands-on experiences | Features, scenarios | Interactive demos, sandboxes | Code Generator |
 | Conformance Checker | Validate implementation | Code, architecture specs | Conformance report | Knowledge Base |
 | Knowledge Curator | Maintain knowledge base | All agent outputs | Organized knowledge | Obsidian MCP |
 
@@ -167,6 +189,30 @@ graph LR
     C -->|Yes| D[Merge Agent]
     C -->|No| A
     D --> E[Documentation Agent]
+```
+
+### 5. Documentation Pattern
+Used for comprehensive documentation creation across multiple formats and audiences.
+
+```mermaid
+graph TD
+    A[Feature Complete] --> B[Doc Orchestrator]
+    B --> C[Analyze Audiences]
+    C --> D[User Guide Writer]
+    C --> E[API Documenter]
+    C --> F[Tutorial Creator]
+    
+    D --> G[Review & Enhance]
+    E --> G
+    F --> G
+    
+    G --> H[Video Script Writer]
+    G --> I[Interactive Demo Creator]
+    
+    H --> J[Publish]
+    I --> J
+    
+    J --> K[Knowledge Base]
 ```
 
 ## Integration Points
