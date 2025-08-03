@@ -1,0 +1,43 @@
+{
+  "name": "claudeprojects2",
+  "version": "0.1.0",
+  "description": "AI-augmented knowledge work platform with architecture-centric methodology",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "echo 'Development mode not yet configured'",
+    "build": "echo 'Build not yet configured'",
+    "test": "echo 'Tests not yet configured'",
+    "lint": "eslint . --ext .ts,.tsx",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky install"
+  },
+  "keywords": [
+    "ai",
+    "claude",
+    "knowledge-management",
+    "architecture",
+    "electron",
+    "react"
+  ],
+  "author": "ClaudeProjects Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.5",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.3",
+    "prettier": "^3.2.4",
+    "typescript": "^5.3.3"
+  }
+}
