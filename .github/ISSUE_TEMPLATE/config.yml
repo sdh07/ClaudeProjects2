@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://github.com/sdh07/ClaudeProjects2/tree/main/docs
+    about: Read the project documentation
+  - name: Discussions
+    url: https://github.com/sdh07/ClaudeProjects2/discussions
+    about: Ask questions and discuss ideas
+  - name: Architecture Decisions
+    url: https://github.com/sdh07/ClaudeProjects2/tree/main/docs/architecture/decisions
+    about: View Architecture Decision Records

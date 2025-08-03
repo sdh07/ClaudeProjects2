@@ -1,0 +1,95 @@
+name: Epic
+description: Large feature or initiative requiring multiple stories
+title: "[EPIC] "
+labels: ["epic", "needs-architecture"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Epic Template
+        Use this template for large features that span multiple sprints or require architectural design.
+
+  - type: textarea
+    id: vision
+    attributes:
+      label: Epic Vision
+      description: What is the high-level goal and value proposition?
+      placeholder: |
+        As a [user type]
+        I want [capability]
+        So that [business value]
+    validations:
+      required: true
+
+  - type: textarea
+    id: success-criteria
+    attributes:
+      label: Success Criteria
+      description: How will we know when this epic is complete?
+      placeholder: |
+        - [ ] Criterion 1
+        - [ ] Criterion 2
+        - [ ] Criterion 3
+    validations:
+      required: true
+
+  - type: textarea
+    id: architectural-impact
+    attributes:
+      label: Architectural Impact
+      description: What architectural changes or decisions are required?
+      placeholder: |
+        - Components affected:
+        - New patterns needed:
+        - Integration points:
+        - Quality attributes impacted:
+    validations:
+      required: true
+
+  - type: textarea
+    id: user-stories
+    attributes:
+      label: User Stories
+      description: Break down this epic into user stories
+      placeholder: |
+        - [ ] Story 1: As a... I want... So that...
+        - [ ] Story 2: As a... I want... So that...
+        - [ ] Story 3: As a... I want... So that...
+
+  - type: dropdown
+    id: domain
+    attributes:
+      label: Domain
+      description: Which domain does this epic primarily affect?
+      options:
+        - Project Management
+        - Methodology
+        - Agents
+        - Knowledge
+        - User Experience
+        - Infrastructure
+    validations:
+      required: true
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      description: What must be in place before this epic can begin?
+      placeholder: List any technical, organizational, or knowledge dependencies
+
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks & Mitigation
+      description: What are the main risks and how will we address them?
+      placeholder: |
+        Risk 1: [Description]
+        Mitigation: [Strategy]
+
+  - type: textarea
+    id: claude-context
+    attributes:
+      label: CLAUDE.md Updates
+      description: What updates to CLAUDE.md will this epic require?
+      placeholder: New patterns, commands, or workflows to document

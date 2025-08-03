@@ -1,0 +1,146 @@
+name: Architecture Decision Record
+description: Document an architectural decision
+title: "[ADR] "
+labels: ["adr", "architecture"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Architecture Decision Record (ADR)
+        Document significant architectural decisions for future reference.
+
+  - type: input
+    id: adr-number
+    attributes:
+      label: ADR Number
+      description: Sequential number for this ADR
+      placeholder: "e.g., ADR-002"
+    validations:
+      required: true
+
+  - type: input
+    id: title
+    attributes:
+      label: Decision Title
+      description: Short, descriptive title
+      placeholder: "e.g., Use Event Sourcing for Audit Trail"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: status
+    attributes:
+      label: Status
+      options:
+        - Proposed
+        - Accepted
+        - Deprecated
+        - Superseded
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: What is the issue that motivates this decision?
+      placeholder: |
+        Describe the forces at play, including technological, political, social, and project local.
+        Why is this decision necessary now?
+    validations:
+      required: true
+
+  - type: textarea
+    id: decision
+    attributes:
+      label: Decision
+      description: What is the change that we're proposing/doing?
+      placeholder: State the architectural decision and the rationale behind it
+    validations:
+      required: true
+
+  - type: textarea
+    id: consequences
+    attributes:
+      label: Consequences
+      description: What becomes easier or harder because of this change?
+      placeholder: |
+        Positive:
+        - Benefit 1
+        - Benefit 2
+        
+        Negative:
+        - Drawback 1
+        - Drawback 2
+        
+        Neutral:
+        - Change 1
+        - Change 2
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: What other options were evaluated?
+      placeholder: |
+        Option 1: [Name]
+        - Description:
+        - Pros:
+        - Cons:
+        - Reason for rejection:
+        
+        Option 2: [Name]
+        - Description:
+        - Pros:
+        - Cons:
+        - Reason for rejection:
+    validations:
+      required: true
+
+  - type: dropdown
+    id: decision-drivers
+    attributes:
+      label: Primary Decision Driver
+      options:
+        - Performance
+        - Scalability
+        - Security
+        - Maintainability
+        - Cost
+        - Time to market
+        - Developer experience
+        - User experience
+    validations:
+      required: true
+
+  - type: textarea
+    id: related-decisions
+    attributes:
+      label: Related Decisions
+      description: Links to related ADRs
+      placeholder: |
+        - Relates to: ADR-001
+        - Supersedes: ADR-000
+        - Superseded by: None
+
+  - type: textarea
+    id: implementation-notes
+    attributes:
+      label: Implementation Notes
+      description: Guidance for implementing this decision
+      placeholder: |
+        - Migration strategy:
+        - Rollback plan:
+        - Key milestones:
+
+  - type: textarea
+    id: references
+    attributes:
+      label: References
+      description: Links to patterns, articles, or documentation
+      placeholder: |
+        - [Pattern Name](https://link)
+        - [Blog Post](https://link)
+        - [Documentation](https://link)

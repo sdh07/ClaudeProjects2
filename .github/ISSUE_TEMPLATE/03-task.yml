@@ -1,0 +1,110 @@
+name: Technical Task
+description: Technical work that enables stories or improves the system
+title: "[TASK] "
+labels: ["task", "technical"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Technical Task Template
+        Use for technical work, refactoring, infrastructure, or enabling work.
+
+  - type: input
+    id: task-title
+    attributes:
+      label: Task Title
+      description: Clear, action-oriented title
+      placeholder: "e.g., Implement caching layer for agent responses"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What needs to be done and why?
+      placeholder: Detailed description of the technical work
+    validations:
+      required: true
+
+  - type: dropdown
+    id: task-type
+    attributes:
+      label: Task Type
+      options:
+        - Architecture Design
+        - Implementation
+        - Refactoring
+        - Infrastructure
+        - Performance
+        - Security
+        - Documentation
+        - Testing
+        - Research
+    validations:
+      required: true
+
+  - type: textarea
+    id: technical-approach
+    attributes:
+      label: Technical Approach
+      description: How will you accomplish this task?
+      placeholder: |
+        1. Step one
+        2. Step two
+        3. Step three
+
+  - type: textarea
+    id: definition-of-done
+    attributes:
+      label: Definition of Done
+      description: Checklist of what must be complete
+      placeholder: |
+        - [ ] Code implemented
+        - [ ] Tests written (coverage > 80%)
+        - [ ] Documentation updated
+        - [ ] ADR written (if architectural change)
+        - [ ] Code reviewed
+        - [ ] CLAUDE.md updated
+    validations:
+      required: true
+
+  - type: dropdown
+    id: estimated-hours
+    attributes:
+      label: Estimated Hours
+      options:
+        - "< 1"
+        - "1-2"
+        - "2-4"
+        - "4-8"
+        - "8-16"
+        - "> 16"
+    validations:
+      required: true
+
+  - type: input
+    id: story-link
+    attributes:
+      label: Story/Epic Link
+      description: Related story or epic
+      placeholder: "#123"
+
+  - type: textarea
+    id: architectural-notes
+    attributes:
+      label: Architectural Considerations
+      description: Any architectural patterns or decisions involved?
+      placeholder: |
+        - Patterns used:
+        - Components affected:
+        - Quality attributes:
+
+  - type: textarea
+    id: agent-instructions
+    attributes:
+      label: Agent Instructions
+      description: Specific instructions for AI agents working on this task
+      placeholder: |
+        Agent: architecture-designer
+        Instructions: Focus on local-first patterns...

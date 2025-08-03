@@ -1,0 +1,107 @@
+name: User Story
+description: User-facing functionality that delivers value
+title: "[STORY] "
+labels: ["story"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## User Story Template
+        Stories represent user-facing functionality that can be completed in a single sprint.
+
+  - type: textarea
+    id: story
+    attributes:
+      label: User Story
+      description: Express the need from the user's perspective
+      placeholder: |
+        As a [type of user]
+        I want [some goal]
+        So that [some reason]
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: Specific conditions that must be met for the story to be complete
+      placeholder: |
+        Given [context]
+        When [action]
+        Then [outcome]
+        
+        - [ ] Criterion 1
+        - [ ] Criterion 2
+        - [ ] Criterion 3
+    validations:
+      required: true
+
+  - type: textarea
+    id: technical-notes
+    attributes:
+      label: Technical Notes
+      description: Implementation considerations and constraints
+      placeholder: |
+        - Architecture pattern to use:
+        - Components to modify:
+        - APIs to create/update:
+        - Data model changes:
+
+  - type: dropdown
+    id: story-points
+    attributes:
+      label: Story Points
+      description: Estimate using Fibonacci sequence
+      options:
+        - "1"
+        - "2"
+        - "3"
+        - "5"
+        - "8"
+        - "13"
+        - "21"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: agent-required
+    attributes:
+      label: Primary Agent
+      description: Which agent will primarily handle this work?
+      options:
+        - architecture-designer
+        - user-guide-writer
+        - code-generator-enhanced
+        - conformance-checker
+        - Human developer
+        - Multiple agents
+    validations:
+      required: true
+
+  - type: textarea
+    id: documentation
+    attributes:
+      label: Documentation Requirements
+      description: What documentation needs to be created or updated?
+      placeholder: |
+        - User guide sections:
+        - API documentation:
+        - Architecture diagrams:
+
+  - type: textarea
+    id: testing
+    attributes:
+      label: Testing Strategy
+      description: How will this story be tested?
+      placeholder: |
+        - Unit tests:
+        - Integration tests:
+        - User acceptance tests:
+
+  - type: input
+    id: epic-link
+    attributes:
+      label: Epic Link
+      description: Link to parent epic (if applicable)
+      placeholder: "#123"

@@ -1,0 +1,119 @@
+name: Research Spike
+description: Time-boxed investigation to gather information and reduce uncertainty
+title: "[RESEARCH] "
+labels: ["research", "spike"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Research Spike Template
+        Use for time-boxed investigations to inform architectural decisions.
+
+  - type: input
+    id: research-question
+    attributes:
+      label: Research Question
+      description: What specific question are we trying to answer?
+      placeholder: "e.g., What is the best vector database for our knowledge graph?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context & Motivation
+      description: Why do we need this information now?
+      placeholder: Explain the decision that depends on this research
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Research Scope
+      description: What will you investigate? What's out of scope?
+      placeholder: |
+        In scope:
+        - Option 1
+        - Option 2
+        - Option 3
+        
+        Out of scope:
+        - Not considering X because...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: timebox
+    attributes:
+      label: Time Box
+      description: Maximum time to spend on this research
+      options:
+        - 2 hours
+        - 4 hours
+        - 1 day
+        - 2 days
+        - 3 days
+        - 1 week
+    validations:
+      required: true
+
+  - type: textarea
+    id: success-criteria
+    attributes:
+      label: Success Criteria
+      description: What deliverables will this research produce?
+      placeholder: |
+        - [ ] Comparison matrix of options
+        - [ ] Proof of concept code
+        - [ ] Architecture Decision Record (ADR)
+        - [ ] Recommendation with rationale
+    validations:
+      required: true
+
+  - type: textarea
+    id: evaluation-criteria
+    attributes:
+      label: Evaluation Criteria
+      description: How will you evaluate the options?
+      placeholder: |
+        - Performance (ops/sec)
+        - Scalability (max nodes)
+        - Cost ($/month)
+        - Developer experience
+        - Community support
+
+  - type: dropdown
+    id: decision-type
+    attributes:
+      label: Decision Type
+      description: What kind of decision will this inform?
+      options:
+        - Technology selection
+        - Architecture pattern
+        - Implementation approach
+        - Integration strategy
+        - Performance optimization
+        - Security approach
+    validations:
+      required: true
+
+  - type: textarea
+    id: resources
+    attributes:
+      label: Resources & References
+      description: Starting points for research
+      placeholder: |
+        - Documentation: [links]
+        - Similar projects: [examples]
+        - Expert contacts: [names]
+
+  - type: textarea
+    id: agent-assistance
+    attributes:
+      label: Agent Assistance
+      description: Which agents can help with this research?
+      placeholder: |
+        - architecture-designer: Evaluate patterns
+        - code-generator: Create POCs
+        - Context7 MCP: Latest documentation
