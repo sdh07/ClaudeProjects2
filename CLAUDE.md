@@ -86,6 +86,15 @@ Sprint 1: Foundation (In Progress)
 4. Progressive enhancement
 5. Agent-oriented architecture
 
+## Self-Maintenance Protocol
+- During work: Use `#` to add learnings (auto-updates CLAUDE.md)
+- Daily: Update sprint context and active issues
+- Weekly: Run `./scripts/maintain-claude-md.sh` for health check
+- On mistakes: Use `#` to add prevention directive
+- On complexity: Extract sections to imported files
+- Always: Keep under 500 lines, action-oriented
+- Sprint end: Archive sprint-specific content, update goals
+
 ## Import Active Contexts
 @docs/architecture/decisions/ADR-001-Agent-Architecture-Pattern.md
 @docs/Product Vision - Refined.md
