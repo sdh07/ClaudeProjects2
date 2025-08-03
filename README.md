@@ -38,6 +38,12 @@ ClaudeProjects2/
 1. Clone the repository
 2. Open in Obsidian for knowledge management
 3. Use Claude Code with the CLAUDE.md instructions
+4. During work, use `#` to add learnings (e.g., `# Always run tests before commit`)
+
+### Quick Tips for Claude Code
+- Start any line with `#` to automatically update CLAUDE.md
+- Use `/memory` to manually edit CLAUDE.md
+- Run `./scripts/maintain-claude-md.sh` for health checks
 
 ## Development Methodology
 

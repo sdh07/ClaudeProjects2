@@ -186,13 +186,39 @@ Secondary: Implement core agents
 Blocked: None
 ```
 
-### 4. Quick Update Protocol
-During development, use `#` to add learnings:
-```
+### 4. Quick Update Protocol (# Feature)
+
+Claude Code provides a powerful built-in feature for organic CLAUDE.md maintenance:
+
+#### How it Works
+1. During any Claude Code session, start a line with `#`
+2. Claude will automatically incorporate this instruction into CLAUDE.md
+3. No manual editing required - it's instant learning
+
+#### Examples
+```bash
 # Always use semantic versioning for releases
-# Run integration tests before merging to main
+# Run integration tests before merging to main  
 # Document API changes in CHANGELOG.md
+# Use React.memo for expensive component renders
+# Validate user input with zod schemas
 ```
+
+#### Best Practices for # Usage
+- **Immediate Learning**: Use it right after discovering something
+- **Specific Instructions**: Be precise, not generic
+- **Pattern Recognition**: Capture recurring patterns
+- **Error Prevention**: Add directives after mistakes
+- **Tool Preferences**: Specify preferred tools/libraries
+
+#### When to Use #
+- After making a mistake: `# Never commit .env files`
+- Learning project conventions: `# Use snake_case for database columns`
+- Discovering better approaches: `# Prefer composition over inheritance`
+- Setting tool preferences: `# Use Vitest instead of Jest for testing`
+- Workflow reminders: `# Always run lint before committing`
+
+This feature makes CLAUDE.md truly self-maintaining - it grows smarter with every session!
 
 ## Template: ClaudeProjects2 CLAUDE.md
 
