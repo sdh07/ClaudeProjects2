@@ -235,15 +235,23 @@ agents/
 - [ ] Code Generator Agent (customized)
 - [ ] Test Builder Agent
 - [ ] API Designer Agent
-- [ ] Documentation Agent (enhanced)
+- [ ] Documentation Orchestrator Agent
 
-### Phase 3: Validation Agents (Sprint 3)
+### Phase 3: Documentation Agents (Sprint 3)
+- [ ] User Guide Writer Agent
+- [ ] Tutorial Creator Agent
+- [ ] API Documenter Agent
+- [ ] Methodology Explainer Agent
+- [ ] Video Script Writer Agent
+- [ ] Interactive Demo Creator Agent
+
+### Phase 4: Validation Agents (Sprint 4)
 - [ ] Conformance Checker Agent
 - [ ] Quality Gate Agent
 - [ ] Performance Analyzer Agent
 - [ ] Security Scanner Agent
 
-### Phase 4: Evolution Agents (Sprint 4)
+### Phase 5: Evolution Agents (Sprint 5)
 - [ ] Refactoring Planner Agent
 - [ ] Technical Debt Analyzer
 - [ ] Migration Assistant Agent
