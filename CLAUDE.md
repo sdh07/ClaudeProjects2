@@ -104,5 +104,4 @@ Sprint 2 Planning: See /issues/
 - Sprint end: Archive sprint-specific content, update goals
 
 ## Import Active Contexts
-@docs/architecture/decisions/ADR-001-Agent-Architecture-Pattern.md
-@docs/Product Vision - Refined.md
+@docs/architecture/Product Vision.md

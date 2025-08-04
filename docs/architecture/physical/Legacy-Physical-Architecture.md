@@ -6,59 +6,56 @@ The physical architecture defines "how" the system is implemented, including tec
 
 ## Architecture Style
 
-**Local-First Hybrid Architecture**
-- Primary data and processing on user's machine
-- Cloud services for collaboration and enhanced AI
-- Progressive enhancement based on connectivity
-- Privacy and performance by design
+**Local-First Agent-Oriented Architecture**
+- Claude Code CLI as the primary execution engine
+- Obsidian desktop app as the knowledge management UI
+- AI agents as markdown-based building blocks
+- MCP ecosystem for integrations
+- Progressive cloud enhancement for collaboration
 
 ## Technology Stack
 
 ```mermaid
 graph TB
-    subgraph "Client Layer"
-        A[Electron App] --> A1[React UI]
-        A --> A2[TypeScript]
-        A --> A3[Local SQLite]
-        A --> A4[File System]
+    subgraph "Presentation Layer"
+        A[Claude Code CLI] --> A1[Agent Invocation]
+        A --> A2[Project Commands]
+        A --> A3[Workflow Execution]
         
-        B[CLI Tool] --> B1[Node.js]
-        B --> B2[Commander.js]
-        B --> B3[Local Agents]
+        B[Obsidian Desktop] --> B1[Visual UI]
+        B --> B2[Knowledge Graph]
+        B --> B3[Document Editing]
     end
     
-    subgraph "Local Services"
-        C[Local Claude Code] --> C1[Agent Runtime]
-        C --> C2[MCP Servers]
-        C --> C3[Local LLM]
+    subgraph "Application Layer"
+        C[Claude Code Runtime] --> C1[Agent Engine]
+        C --> C2[Task Orchestration]
+        C --> C3[Context Management]
         
-        D[Obsidian Integration] --> D1[Plugin API]
-        D --> D2[Markdown Files]
-        D --> D3[Knowledge Graph]
+        D[MCP Servers] --> D1[GitHub MCP]
+        D --> D2[Obsidian MCP]
+        D --> D3[Context7 MCP]
+        D --> D4[Sequential MCP]
     end
     
-    subgraph "Cloud Services"
-        E[API Gateway] --> E1[FastAPI]
-        E --> E2[GraphQL]
-        E --> E3[WebSockets]
+    subgraph "Domain Layer"
+        E[Agent Definitions] --> E1[Markdown Files]
+        E --> E2[Capability Index]
+        E --> E3[Performance Metrics]
         
-        F[AI Services] --> F1[Claude API]
-        F --> F2[OpenAI API]
-        F --> F3[Custom Models]
-        
-        G[Collaboration] --> G1[Sync Service]
-        G --> G2[Real-time Collab]
-        G --> G3[Team Spaces]
+        F[Business Logic] --> F1[TypeScript]
+        F --> F2[Event Sourcing]
+        F --> F3[Domain Models]
     end
     
-    subgraph "Data Layer"
-        H[Local Storage] --> H1[SQLite]
-        H --> H2[File System]
-        H --> H3[IndexedDB]
+    subgraph "Infrastructure Layer"
+        G[Local Storage] --> G1[SQLite]
+        G --> G2[File System]
+        G --> G3[Git Repos]
         
-        I[Cloud Storage] --> I1[PostgreSQL]
-        I --> I2[S3/Blob]
-        I --> I3[Redis Cache]
+        H[External Services] --> H1[Claude API]
+        H --> H2[GitHub API]
+        H --> H3[Documentation APIs]
     end
 ```
 
