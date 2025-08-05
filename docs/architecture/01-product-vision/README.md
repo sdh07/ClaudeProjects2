@@ -30,7 +30,7 @@ graph TB
     subgraph "The Convergence"
         A[AI Maturity<br/>LLMs + Agents] 
         B[Methodology Crisis<br/>Complexity Exploding]
-        C[Market Ready<br/>AI Mainstream]
+        C[Small is the New Big<br/>Easier scaling for SMEs]
     end
     
     A & B & C --> D[The Time is NOW]
@@ -39,7 +39,7 @@ graph TB
 ```
 
 - **AI Finally Works**: Reliable, affordable, capable of complex reasoning
-- **Knowledge Work is Breaking**: Too complex for human-only approaches
+- **End of Knowledge Work**: Knowledge work transforms into human-AI co-created Wisdom Work
 - **First-Mover Window**: 12-24 months before AI assisted work is the new normal in all companies
 
 [**→ Read the full "Why Now?" analysis**](./06-why-now.md)
