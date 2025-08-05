@@ -1,6 +1,6 @@
 # ClaudeProjects Product Vision
 
-> **Executive Summary**: ClaudeProjects is the AI-Integrated Project Environment (AI-IPE) that brings 10x productivity gains to knowledge workers—just as AI-IDEs revolutionized software development. By combining executable methodologies, specialized AI agents, and living knowledge systems, we transform fragmented manual work into intelligent, automated excellence. Open source core, $50-200/month for premium features.
+> **Executive Summary**: ClaudeProjects is the AI-Integrated Project Environment (AI-IPE) that brings 10x productivity gains to knowledge workers—just as AI-IDEs revolutionized software development. By combining executable methodologies, specialized AI agents, and living knowledge systems, we transform fragmented manual work into intelligent, automated excellence.
 
 ## Why Change? The Hidden Crisis
 
