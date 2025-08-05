@@ -40,7 +40,7 @@ graph TB
 
 - **AI Finally Works**: Reliable, affordable, capable of complex reasoning
 - **Knowledge Work is Breaking**: Too complex for human-only approaches
-- **First-Mover Window**: 6-12 months before Big Tech catches on
+- **First-Mover Window**: 12-24 months before AI assisted work is the new normal
 
 [**→ Read the full "Why Now?" analysis**](./06-why-now.md)
 
