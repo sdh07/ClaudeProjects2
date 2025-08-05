@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "obsidian": {
+      "command": "node",
+      "args": ["/Users/stephan/.nvm/versions/node/v20.11.0/lib/node_modules/@campsis/mcp-obsidian/dist/index.js"],
+      "env": {
+        "OBSIDIAN_VAULT_PATH": "/Users/stephan/Documents/ClaudeProjects2-Vault"
+      }
+    }
+  }
+}

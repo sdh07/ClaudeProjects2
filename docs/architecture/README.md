@@ -1,82 +1,67 @@
-# ClaudeProjects2 Architecture Guide
+# ClaudeProjects2 Architecture Documentation
 
-> Progressive disclosure architecture documentation - start simple, dive deep as needed.
+> Clean, agent-based architecture for 10x productivity through AI-augmented knowledge work
 
-## Quick Overview
+## Architecture Overview
 
-ClaudeProjects2 implements the **Triple Helix** innovation (Methodology → AI Agents → Knowledge) to deliver **10x productivity gains** for knowledge workers.
+ClaudeProjects2 implements a **pure agent-based architecture** where:
+- Everything is a Claude Code agent (no traditional services)
+- CLAUDE.md serves as living orchestration
+- File-based message queues enable agent communication
+- Local-first design with optional cloud sync
+- Obsidian provides the knowledge management UI
 
-## Architecture Organization
+## Documentation Structure
 
-### 📋 [Logical Architecture](logical/)
-**What the system does** - Business capabilities and domains
+### 📘 [01 - Product Vision](01-product-vision/)
+**WHY** we're building ClaudeProjects2
+- Executable methodologies vision
+- User stories and competitive landscape
+- Business model and timing rationale
 
-Progressive exploration:
-- [Overview](logical/Overview.md) - Triple Helix and principles
-- [Layers](logical/Layers.md) - Detailed layer specifications  
-- [Domains](logical/Domains.md) - Business logic deep dive
-- [Cross-Cutting](logical/Cross-Cutting.md) - System-wide concerns
-- [Quality Attributes](logical/Quality-Attributes.md) - 10x enablers
-- [Flows](logical/Flows.md) - Real-world examples
+### 📗 [02 - Logical Architecture](02-logical-architecture/)
+**WHAT** the system does conceptually
+- Domain model and layered architecture
+- Cross-cutting concerns (10x engine, context management)
+- Quality attributes and data flows
 
-### 🔧 [Physical Architecture](physical/)
-**How it's built** - Technologies and infrastructure
+### 📙 [03 - Physical Architecture](03-physical-architecture/)
+**HOW** the system is built with agents
+- Agent-based architecture design
+- Communication protocols and performance
+- Deployment specifications and integrations
 
-Progressive exploration:
-- [Overview](physical/Overview.md) - Technology decisions
-- [Technology Stack](physical/Technology-Stack.md) - Detailed choices
-- [Deployment](physical/Deployment.md) - Setup and scaling
-- [Data Architecture](physical/Data-Architecture.md) - Storage design
-- [Security](physical/Security.md) - Privacy and protection
-- [Agent Implementation](physical/Agent-Implementation.md) - Runtime details
+### 📕 [Architecture Decision Records](ADRs/)
+**Key decisions** that shape the system
+- ADR-001: Agent-Based Architecture
+- ADR-002: CLAUDE.md as Central Orchestration
+- ADR-003: File-Based Message Queue
+- ADR-004: Hybrid Obsidian Integration Strategy
+- ADR-005: Multi-Layer Context Cache Strategy
+- ADR-006: Local-First Architecture
 
-### 🤖 [Agent Architecture](Agent-Architecture.md)
-**AI building blocks** - Agent design and orchestration
-- Markdown-based agent definitions
-- Claude Code integration patterns
-- Agent collaboration protocols
-- Performance optimization
+## Quick Navigation
 
-## Key Architectural Decisions
+**Start Here**: [Product Vision](01-product-vision/README.md) → [Logical Overview](02-logical-architecture/Overview.md) → [Physical Architecture](03-physical-architecture/Agent-Based-Physical-Architecture.md)
 
-1. **[ADR-001: Agent Architecture Pattern](decisions/ADR-001-Agent-Architecture-Pattern.md)** - Why we chose markdown-based agents
-2. **ADR-002: Local-First Data** *(coming soon)* - Privacy and performance rationale
-3. **ADR-003: MCP Integration Strategy** *(coming soon)* - Leveraging the ecosystem
+**For Developers**: Jump to [Physical Architecture](03-physical-architecture/) for implementation details
 
-## For Different Audiences
+**For Architects**: Review [ADRs](ADRs/) for key decisions
 
-### 👩‍💻 For Developers
-1. Start with [Agent Architecture](Agent-Architecture.md) to understand how to build agents
-2. Review [Physical Architecture](Physical-Architecture.md#technology-stack) for tech stack
-3. Check `/agents/` directory for examples
+## Key Architectural Principles
 
-### 🏗️ For Architects  
-1. Begin with [Logical Architecture](Logical-Architecture.md) for system design
-2. Review architectural decisions in `decisions/`
-3. Explore [Physical Architecture](Physical-Architecture.md#deployment-architecture) for deployment
+1. **Agent-First**: Every component has intelligence
+2. **Local-First**: Full functionality offline, privacy by default
+3. **File-Based**: Simple, debuggable, portable
+4. **Self-Improving**: Agents learn and evolve
+5. **10x Productivity**: Every decision enables order-of-magnitude gains
 
-### 📊 For Product Managers
-1. Read [Logical Architecture](Logical-Architecture.md#core-domains) for business capabilities
-2. See [Product Vision](Product%20Vision.md) for strategic context
-3. Review quality attributes for system characteristics
+## Living Architecture
 
-## Architecture Principles
+This architecture evolves as:
+- Agents improve themselves
+- New patterns emerge
+- User needs change
+- Technology advances
 
-1. **Architecture-First**: Design before implementation
-2. **Agent-Oriented**: AI agents as first-class citizens
-3. **Local-First**: Your data, your machine, your control
-4. **Progressive Enhancement**: Cloud features are optional
-5. **Knowledge-Centric**: Every action feeds the knowledge graph
-
-## Quick Links
-
-- **Setup**: [Development Setup](../Development%20Setup%20Complete.md)
-- **Agents**: See `/agents/` directory
-- **Workflows**: [PM System Design](../PM-System-Comprehensive-Report.md)
-- **Specifications**: See `/docs/specs/` directory
-
-## Next Steps
-
-- **New to the project?** Start with [Logical Architecture](Logical-Architecture.md)
-- **Ready to code?** Jump to [Agent Architecture](Agent-Architecture.md)
-- **Setting up?** Follow [Physical Architecture](Physical-Architecture.md#deployment-architecture)
+Last Updated: Sprint 2 Complete (Architecture Readiness Achieved)

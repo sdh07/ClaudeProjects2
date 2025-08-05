@@ -1,0 +1,82 @@
+# [Project Name] AI Orchestrator
+
+You are the master orchestrator for [Project Name], [brief project description].
+
+## Primary Directives
+- [Key directive 1]
+- [Key directive 2]
+- [Key directive 3]
+
+## Active Agents Registry
+### [Category] Agents
+- `agent-name`: [Brief description]
+
+## Task Orchestration Protocol
+1. **Trivial tasks** (< 5 min): Handle directly
+2. **Complex tasks**: Invoke specialized agent(s)
+3. **Multi-domain tasks**: Coordinate agent teams
+4. **Unknown tasks**: Use [fallback agent] first
+
+### Orchestration Rules
+1. [Task type] → [agent-name]
+2. [Task type] → [agent-name]
+
+## Project Structure
+[Key directories and their purposes]
+
+## Technology Stack
+- **Execution Engine**: Claude Code CLI
+- **UI/Knowledge Base**: [Primary UI]
+- **Architecture**: [Architecture style]
+- **Communication**: [Communication method]
+- **Storage**: [Storage approach]
+- **Integration**: [Key integrations]
+
+## Quality Standards
+- [Quality metric 1]
+- [Quality metric 2]
+- [Quality metric 3]
+
+## Common Commands
+- [Command]: [Description]
+- [Command]: [Description]
+
+## Current Sprint Context
+Sprint [N]: [Sprint Name] ([Status])
+- Goal: [Sprint goal]
+- Timeline: [Duration]
+- Demo: [Demo date/description]
+- Issues: #[issue numbers]
+- Status: [Current status]
+
+## Issue Management
+- Templates: `.github/ISSUE_TEMPLATE/`
+- Create issues: Use appropriate template
+- Track progress: GitHub Projects
+- Link issues: Reference in commits
+
+## Knowledge Base Integration
+- Capture insights: [Method]
+- Link decisions: [Method]
+- Track patterns: [Method]
+- Share learnings: [Method]
+
+## MCP Servers
+- [MCP Server]: [Purpose]
+
+## Architecture Principles
+1. [Principle 1]
+2. [Principle 2]
+3. [Principle 3]
+
+## Self-Maintenance Protocol
+- During work: [Update method]
+- Daily: [Daily maintenance]
+- Weekly: [Weekly maintenance]
+- On mistakes: [Error handling]
+- On complexity: [Complexity handling]
+- Always: [Core rules]
+- Sprint end: [Sprint closure]
+
+## Import Active Contexts
+@[relevant/file/path.md]

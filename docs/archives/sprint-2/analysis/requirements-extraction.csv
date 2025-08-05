@@ -1,0 +1,57 @@
+Category,Requirement,Source,Priority,Complexity,Status,Notes
+Performance,Time to first value < 5 minutes,Product Vision,Critical,High,Not Started,Requires streamlined onboarding
+Performance,Context switching < 500ms,Product Vision,High,Medium,Not Started,Agent state management critical
+Performance,Knowledge retrieval < 100ms,Product Vision,High,High,Not Started,Requires optimized indexing
+Performance,Reduce 3 weeks to 4 hours (95% reduction),User Story - Bernhard,Critical,Very High,Not Started,Core value proposition
+Performance,Handle 200K+ token contexts,Product Vision,High,High,Not Started,Claude Code capability
+Performance,Support concurrent agent execution,Product Vision,High,High,Not Started,Multi-threading required
+Methodology Engine,Parse YAML/JSON methodology specs,Executable Methodologies,Critical,Medium,Not Started,Core feature
+Methodology Engine,Dynamic workflow adaptation,Executable Methodologies,Critical,High,Not Started,AI-driven adaptation
+Methodology Engine,Real-time methodology modification,Executable Methodologies,Medium,Medium,Not Started,Live editing capability
+Methodology Engine,Methodology state tracking,Executable Methodologies,High,Medium,Not Started,Progress persistence
+Methodology Engine,Support interruption and resumption,Executable Methodologies,High,Medium,Not Started,State management
+Agent Framework,Support 50+ specialized agents,Product Vision,Critical,High,Not Started,Extensible architecture
+Agent Framework,Agent discovery and registration,Product Vision,High,Medium,Not Started,Dynamic loading
+Agent Framework,Inter-agent communication protocols,Product Vision,Critical,High,Not Started,Message passing system
+Agent Framework,Agent lifecycle management,Product Vision,High,Medium,Not Started,Start/stop/restart
+Agent Framework,Domain-specific agent knowledge,Product Vision,Critical,Very High,Not Started,Specialization key
+Agent Framework,Agent learning from execution,Product Vision,Medium,High,Not Started,ML capabilities
+Knowledge System,Knowledge graph implementation,Product Vision,Critical,Very High,Not Started,Core infrastructure
+Knowledge System,Cross-project knowledge synthesis,Product Vision,High,High,Not Started,Knowledge transfer
+Knowledge System,Version control for knowledge,Product Vision,Medium,Medium,Not Started,History tracking
+Knowledge System,Privacy-preserving storage,Product Vision,Critical,High,Not Started,Encryption required
+Knowledge System,Real-time knowledge updates,Product Vision,High,Medium,Not Started,Live sync
+Triple Helix,Methodology guides agent execution,Product Vision,Critical,High,Not Started,Core innovation
+Triple Helix,Agent results feed knowledge,Product Vision,Critical,High,Not Started,Automatic capture
+Triple Helix,Knowledge improves methodology,Product Vision,High,Very High,Not Started,Learning loop
+Integration,Claude Code deep integration,Product Vision,Critical,Very High,Not Started,Primary AI engine
+Integration,Obsidian bidirectional sync,Product Vision,Critical,High,Not Started,Knowledge platform
+Integration,MCP server orchestration,Product Vision,High,Medium,Not Started,Integration layer
+Integration,File system organization,Product Vision,High,Medium,Not Started,Local storage
+Integration,External API connections,Product Vision,Medium,Medium,Not Started,Research capability
+User Experience,Project setup < 1 minute,Product Vision,High,Medium,Not Started,Quick start
+User Experience,Natural language input,Product Vision,Critical,Medium,Not Started,Conversational UI
+User Experience,Visual methodology tracking,Product Vision,High,Medium,Not Started,Progress visualization
+User Experience,Interactive outputs,Product Vision,High,High,Not Started,Not static documents
+User Experience,Real-time collaboration,Product Vision,Medium,High,Not Started,Multi-user support
+Architecture,Single workstation deployment,Product Vision,Critical,Medium,Not Started,No server required
+Architecture,Offline-capable operation,Product Vision,Critical,High,Not Started,Local-first design
+Architecture,Cross-platform (Mac/Windows),Product Vision,High,Medium,Not Started,Electron likely
+Architecture,Local-first data storage,Product Vision,Critical,Medium,Not Started,Privacy requirement
+Business Model,Open source core functionality,Business Model,Critical,Low,Not Started,Community edition
+Business Model,Advanced agent builder (paid),Business Model,High,High,Not Started,Revenue driver
+Business Model,Elite methodologies (paid),Business Model,High,Medium,Not Started,Premium content
+Business Model,Usage tracking for ROI,Business Model,High,Medium,Not Started,Value measurement
+Business Model,License tier enforcement,Business Model,High,Medium,Not Started,Feature gating
+Security,All data on user device,Product Vision,Critical,Medium,Not Started,No cloud storage
+Security,Encryption at rest and transit,Product Vision,Critical,Medium,Not Started,Standard security
+Security,Multi-user access control,Product Vision,Medium,Medium,Not Started,Team features
+Security,Activity audit trail,Product Vision,Medium,Low,Not Started,Compliance support
+Security,Data export freedom,Product Vision,High,Low,Not Started,No lock-in
+Specific Agents,Research Agent (web intelligence),User Story,Critical,High,Not Started,External data gathering
+Specific Agents,Analysis Agent (pattern recognition),User Story,High,High,Not Started,Data processing
+Specific Agents,Innovation Agent (creative synthesis),User Story,Critical,Very High,Not Started,Core differentiator
+Specific Agents,Writing Agent (professional output),User Story,High,Medium,Not Started,Document generation
+Specific Agents,Strategy Agent (business thinking),User Story,High,High,Not Started,Strategic analysis
+Specific Agents,Presentation Agent (materials),User Story,High,Medium,Not Started,Slide generation
+Specific Agents,Trend Agent (external monitoring),User Story,Medium,High,Not Started,Market intelligence

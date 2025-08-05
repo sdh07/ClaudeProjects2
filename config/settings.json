@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0",
+  "project": {
+    "name": "ClaudeProjects2",
+    "type": "system"
+  },
+  "agents": {
+    "autoLoad": ["core", "infrastructure"],
+    "onDemand": ["domain", "delivery", "knowledge"]
+  },
+  "performance": {
+    "cacheSize": "100MB",
+    "contextTimeout": 500,
+    "parallelAgents": 4
+  },
+  "paths": {
+    "vault": "/Users/stephan/Documents/ClaudeProjects2-Vault",
+    "runtime": "/Users/stephan/GitHub/ClaudeProjects2/runtime"
+  }
+}
