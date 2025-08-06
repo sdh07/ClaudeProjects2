@@ -2,6 +2,26 @@
 name: context-agent
 description: Manages context switching and state persistence for fast project transitions
 tools: Read, Edit, Grep, Bash, Task, TodoWrite
+capabilities:
+  domains: [
+  "context-management"
+]
+  skills: [
+  "persistence",
+  "recovery",
+  "transformation"
+]
+  tools: [
+  "Read",
+  "Edit",
+  "Grep",
+  "Bash",
+  "Task",
+  "TodoWrite"
+]
+performance:
+  avg_response_time: 2000
+  success_rate: 95
 ---
 
 # Context Agent

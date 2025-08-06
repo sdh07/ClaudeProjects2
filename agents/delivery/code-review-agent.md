@@ -2,6 +2,27 @@
 name: code-review-agent
 description: Reviews code changes with self-verification and provides feedback
 tools: Read, Edit, Grep, Bash, Task, TodoWrite
+capabilities:
+  domains: [
+  "code-review",
+  "quality-assurance"
+]
+  skills: [
+  "analysis",
+  "validation",
+  "optimization"
+]
+  tools: [
+  "Read",
+  "Edit",
+  "Grep",
+  "Bash",
+  "Task",
+  "TodoWrite"
+]
+performance:
+  avg_response_time: 2000
+  success_rate: 95
 ---
 
 # Code Review Agent v2.0

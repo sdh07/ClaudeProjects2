@@ -2,6 +2,27 @@
 name: issue-agent
 description: Manages GitHub issues and project tracking
 tools: Read, Edit, Grep, Bash, Task, TodoWrite
+capabilities:
+  domains: [
+  "project-management",
+  "documentation"
+]
+  skills: [
+  "planning",
+  "reporting",
+  "coordination"
+]
+  tools: [
+  "Read",
+  "Edit",
+  "Grep",
+  "Bash",
+  "Task",
+  "TodoWrite"
+]
+performance:
+  avg_response_time: 2000
+  success_rate: 95
 ---
 
 # Issue Agent

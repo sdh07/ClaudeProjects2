@@ -98,21 +98,81 @@ Each mapping includes:
 | Access Controller | File system permissions | OS-level security |
 | Audit Logger | All agents → logs/ | Activity tracking |
 
+## Intelligence Domain → Infrastructure Mapping
+
+### Learning & ML Components
+| Logical Component | Physical Implementation | Script |
+|-------------------|------------------------|--------|
+| K-means Clustering | learning-algorithms.sh | ML algorithms for agent performance |
+| Pattern Detection | pattern-detector.sh | Pattern recognition engine |
+| Dynamic Optimizer | dynamic-optimizer.sh | Real-time optimization engine |
+| Self-Improvement | self-improvement-integration.sh | Continuous learning system |
+
+### Context Intelligence
+| Logical Component | Physical Implementation | Script |
+|-------------------|------------------------|--------|
+| Context Management | context-aware-invoke.sh | Smart context routing |
+| Context Persistence | context-persistence.sh | Advanced persistence engine |
+| Context Queue | context-queue.sh | Context message handling |
+| Context Recovery | context-awareness system | Multi-layer recovery |
+
+## Optimization Domain → Infrastructure Mapping
+
+### Optimization Engines
+| Logical Component | Physical Implementation | Script |
+|-------------------|------------------------|--------|
+| Performance Optimizer | performance-optimizer.sh | ML-driven performance optimization |
+| Quality Optimizer | quality-optimizer.sh | Verification-driven quality enhancement |
+| Process Optimizer | process-optimizer.sh | Team effectiveness analysis |
+| Resource Optimizer | resource-optimizer.sh | Predictive resource allocation |
+
+### Alignment & Monitoring Systems
+| Logical Component | Physical Implementation | Script |
+|-------------------|------------------------|--------|
+| Alignment Monitor | claude-alignment-monitor.sh | Blueprint alignment tracking |
+| Blueprint Sync | blueprint-sync.sh | Synchronization with blueprint |
+| Learning Feedback | learning-feedback-loops.sh | Continuous improvement loops |
+| Quality Automation | quality-automation.sh | Automated quality enforcement |
+
+## Agent Excellence System → Infrastructure Mapping
+
+### Agent Analytics & Enhancement
+| Logical Component | Physical Implementation | Script |
+|-------------------|------------------------|--------|
+| Agent Analyzer | agent-analyzer.sh | Performance analysis and insights |
+| Agent Organizer | agent-organizer.sh | Dynamic team composition |
+| Agent Generator | agent-generator-enhanced.sh | AI-driven agent creation |
+| Performance Tracking | agent-performance-tracker.sh | Real-time performance monitoring |
+| Capability Enhancer | agent-capability-enhancer.sh | Agent skill improvement |
+
+### Verification & Quality Systems  
+| Logical Component | Physical Implementation | Script |
+|-------------------|------------------------|--------|
+| Agent Verification | agent-verification.sh | Agent capability validation |
+| Quality Dashboard | quality-dashboard.sh | Real-time quality monitoring |
+| Feedback Collection | feedback-collector.sh | User feedback integration |
+| Feedback Processing | feedback-to-improvement.sh | Feedback-driven improvements |
+| PM Approval Gates | pm-approval-gate.sh | Product management integration |
+
 ## Cross-Cutting Concerns → Agent Mapping
 
-### Performance
+### Advanced Performance
 | Concern | Implementation |
 |---------|----------------|
-| Context Switching | context-agent with multi-layer cache |
-| Knowledge Retrieval | obsidian-agent with indices |
-| Message Processing | File-based queue with watchers |
+| Context Switching | context-agent with multi-layer cache + intelligence |
+| Knowledge Retrieval | obsidian-agent with indices + ML optimization |
+| Message Processing | Enhanced message queue v2 with priority routing |
+| Performance Monitoring | Real-time performance tracking with ML prediction |
+| Blueprint Alignment | Continuous alignment monitoring and auto-correction |
 
-### 10x Productivity
+### Intelligence-Enhanced 10x Productivity
 | Feature | Agent Combination |
 |---------|------------------|
-| Parallel Execution | Multiple agents via orchestrator |
-| Pattern Recognition | knowledge-agent + methodology-agent |
-| Automated Workflows | project-agent + version-agent |
+| Parallel Execution | Multiple agents via orchestrator + dynamic optimizer |
+| Pattern Recognition | knowledge-agent + methodology-agent + pattern-detector |
+| Automated Workflows | project-agent + version-agent + process-optimizer |
+| Learning-Driven Optimization | All agents + intelligence domain integration |
+| Predictive Performance | ML algorithms + performance optimizer + context intelligence |
 
 ## Data Flow Example
 

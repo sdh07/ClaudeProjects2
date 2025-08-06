@@ -13,6 +13,8 @@ graph TB
             CORE[Core Agents<br/>Always Active]
             DOMAIN[Domain Agents<br/>On Demand]
             INFRA[Infrastructure Agents<br/>System Level]
+            INTEL[Intelligence Layer<br/>Learning & ML]
+            OPTIM[Optimization Layer<br/>Performance & Quality]
         end
         
         subgraph "Storage"
@@ -34,9 +36,13 @@ graph TB
     CLAUDE --> CORE
     CORE --> DOMAIN
     CORE --> INFRA
+    CORE <--> INTEL
+    INTEL <--> OPTIM
     
     CORE <--> MSG
     CORE <--> CTX
+    INTEL <--> CTX
+    OPTIM <--> CTX
     INFRA --> VAULT
     UI --> VAULT
     

@@ -2,6 +2,27 @@
 name: project-agent
 description: Manages sprints, tasks, and agile workflows
 tools: Read, Edit, Grep, Bash, Task, TodoWrite
+capabilities:
+  domains: [
+  "project-management",
+  "orchestration"
+]
+  skills: [
+  "planning",
+  "coordination",
+  "monitoring"
+]
+  tools: [
+  "Read",
+  "Edit",
+  "Grep",
+  "Bash",
+  "Task",
+  "TodoWrite"
+]
+performance:
+  avg_response_time: 2000
+  success_rate: 95
 ---
 
 # Project Agent

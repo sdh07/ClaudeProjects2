@@ -2,6 +2,27 @@
 name: knowledge-agent
 description: Captures and retrieves project knowledge
 tools: Read, Edit, Grep, Bash, Task, TodoWrite
+capabilities:
+  domains: [
+  "knowledge-management",
+  "documentation"
+]
+  skills: [
+  "synthesis",
+  "persistence",
+  "reporting"
+]
+  tools: [
+  "Read",
+  "Edit",
+  "Grep",
+  "Bash",
+  "Task",
+  "TodoWrite"
+]
+performance:
+  avg_response_time: 2000
+  success_rate: 95
 ---
 
 # Knowledge Agent

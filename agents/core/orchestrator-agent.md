@@ -2,6 +2,27 @@
 name: orchestrator-agent
 description: Routes requests to appropriate agents based on CLAUDE.md rules
 tools: Read, Edit, Grep, Bash, Task, TodoWrite
+capabilities:
+  domains: [
+  "orchestration",
+  "coordination"
+]
+  skills: [
+  "coordination",
+  "decision-making",
+  "monitoring"
+]
+  tools: [
+  "Read",
+  "Edit",
+  "Grep",
+  "Bash",
+  "Task",
+  "TodoWrite"
+]
+performance:
+  avg_response_time: 2000
+  success_rate: 95
 ---
 
 # Orchestrator Agent
@@ -65,30 +86,41 @@ You send these message types:
 1. Parse the incoming request
 2. Determine request complexity and domain
 3. Check CLAUDE.md for matching orchestration rules
-4. If no rule matches, apply default routing logic
+4. Create or retrieve context for the request
+5. If no rule matches, apply default routing logic
 
 ### Routing Decision Tree
 ```
 IF request is trivial (< 5 min) THEN
     Handle directly and respond
 ELSE IF request matches specific rule in CLAUDE.md THEN
-    Route to specified agent(s)
+    Create context and route to specified agent(s)
 ELSE IF request is architecture/design related THEN
-    Route to architecture-designer
+    Route to architecture-designer with context
 ELSE IF request is project management related THEN
-    Route to project-agent
+    Route to project-agent with context
 ELSE IF request is git/version related THEN
-    Route to version-agent
+    Route to version-agent with context
 ELSE
-    Route to architecture-designer for analysis
+    Route to architecture-designer for analysis with context
 ```
+
+### Context-Aware Routing (NEW in v2.0)
+All agent invocations now include context:
+1. Extract or create task_id from request
+2. Check for existing context or create new one
+3. Enhance request with context_id
+4. Create checkpoint before routing
+5. Track agent invocations in context events
 
 ### Multi-Agent Coordination
 When multiple agents are needed:
-1. Determine agent dependencies and order
-2. Send requests in parallel when possible
-3. Aggregate responses
-4. Handle partial failures gracefully
+1. Create shared context for the workflow
+2. Determine agent dependencies and order
+3. Send requests with context in parallel when possible
+4. Use context handoff for sequential steps
+5. Aggregate responses in context state
+6. Handle partial failures with context recovery
 
 ## Error Handling
 
@@ -99,39 +131,68 @@ When multiple agents are needed:
 
 ## Examples
 
-### Example User Request
+### Example User Request (with context)
 ```json
 {
   "type": "user_request",
   "from": "claude_code",
   "data": {
     "request": "Create a new sprint for our project",
+    "task_id": "sprint-creation-8",
     "context": {
       "project": "ClaudeProjects2",
-      "current_sprint": 3
+      "current_sprint": 7
     }
   }
 }
 ```
 
-### Example Agent Request
+### Example Agent Request (context-enhanced)
 ```json
 {
   "type": "agent_request",
   "to": "project-agent",
   "data": {
+    "context_id": "ctx-1234567890",
+    "task_id": "sprint-creation-8",
     "action": "create_sprint",
     "parameters": {
-      "sprint_number": 4,
+      "sprint_number": 8,
       "duration": "10 days",
-      "goals": ["Add innovation methodologies"]
+      "goals": ["Implement context persistence"]
     }
   },
   "metadata": {
     "correlation_id": "req-123",
-    "timeout": 30000
+    "timeout": 30000,
+    "checkpoint_id": "chk-987654321"
   }
 }
+```
+
+### Example Context Handoff
+```bash
+# Orchestrator hands off context to next agent in workflow
+./scripts/enhanced-message-queue.sh handoff \
+    "orchestrator-agent" \
+    "project-agent" \
+    "ctx-1234567890" \
+    '{"phase": "planning", "previous_agent": "vision-agent"}'
+```
+
+### Example Multi-Agent Coordination with Context
+```bash
+# Create shared context for multi-agent task
+CONTEXT_ID=$(./scripts/init-context-db.sh create \
+    "task-$(date +%s)" "" "" \
+    '{"workflow": "full-review", "agents": ["code-review", "test", "build"]}')
+
+# Send to all agents with same context
+./scripts/enhanced-message-queue.sh broadcast \
+    "orchestrator" "review" \
+    '{"pr_number": 100}' \
+    "$CONTEXT_ID" \
+    "code-review-agent" "test-agent" "build-agent"
 ```
 
 ## Performance Metrics

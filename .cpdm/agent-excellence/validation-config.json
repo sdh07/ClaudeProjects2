@@ -1,0 +1,33 @@
+{
+  "validation_levels": [
+    {
+      "name": "syntax",
+      "description": "Basic syntax and format validation",
+      "required": true,
+      "weight": 0.3
+    },
+    {
+      "name": "semantic",
+      "description": "Logical consistency and completeness",
+      "required": true,
+      "weight": 0.4
+    },
+    {
+      "name": "integration",
+      "description": "Integration compatibility testing",
+      "required": false,
+      "weight": 0.2
+    },
+    {
+      "name": "performance",
+      "description": "Performance and resource validation",
+      "required": false,
+      "weight": 0.1
+    }
+  ],
+  "pass_threshold": 0.75,
+  "warning_threshold": 0.60,
+  "test_timeout": 300,
+  "parallel_tests": true,
+  "generate_report": true
+}

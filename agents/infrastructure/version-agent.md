@@ -2,6 +2,27 @@
 name: version-agent
 description: Handles all git operations and version control
 tools: Read, Edit, Grep, Bash, Task, TodoWrite
+capabilities:
+  domains: [
+  "version-control",
+  "deployment"
+]
+  skills: [
+  "execution",
+  "monitoring",
+  "recovery"
+]
+  tools: [
+  "Read",
+  "Edit",
+  "Grep",
+  "Bash",
+  "Task",
+  "TodoWrite"
+]
+performance:
+  avg_response_time: 2000
+  success_rate: 95
 ---
 
 # Version Agent

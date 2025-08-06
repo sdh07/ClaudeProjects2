@@ -5,6 +5,9 @@
 
 set -e
 
+# Script directory
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 # Configuration
 MESSAGES_DIR="$HOME/.claudeprojects/messages"
 STATE_DIR="$HOME/.claudeprojects/state"
@@ -354,6 +357,15 @@ main() {
         "transition")
             transition_phase "$2"
             ;;
+        "approve")
+            "$SCRIPT_DIR/pm-approval-gate.sh" approve "$2" "$3" "PM" "${4:-Approved}"
+            ;;
+        "reject")
+            "$SCRIPT_DIR/pm-approval-gate.sh" reject "$2" "$3" "$4"
+            ;;
+        "pending")
+            "$SCRIPT_DIR/pm-approval-gate.sh" pending
+            ;;
         "override")
             override_gate "$2" "$3" "$4"
             ;;
@@ -375,6 +387,9 @@ main() {
             echo "Commands:"
             echo "  start <feature> <description>     Start new feature in CPDM"
             echo "  transition <feature>              Transition to next phase"
+            echo "  approve <feature> <phase> [comments]  Approve deliverable"
+            echo "  reject <feature> <phase> <feedback>   Reject with feedback"
+            echo "  pending                           Show pending approvals"
             echo "  override <feature> <reason> <approver>  Override failed gate"
             echo "  status [feature]                  Show feature status"
             echo "  metrics                           Show workflow metrics"
@@ -383,8 +398,10 @@ main() {
             echo "Examples:"
             echo "  $0 start 'user-auth' 'Add OAuth2 authentication'"
             echo "  $0 transition 'user-auth'"
+            echo "  $0 approve 'user-auth' 'vision' 'Looks great!'"
+            echo "  $0 reject 'user-auth' 'decision' 'Need more security details'"
             echo "  $0 status 'user-auth'"
-            echo "  $0 override 'user-auth' 'Emergency fix' 'john.doe'"
+            echo "  $0 pending"
             ;;
         *)
             echo -e "${RED}Unknown command: $1${NC}"

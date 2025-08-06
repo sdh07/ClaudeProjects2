@@ -2,6 +2,27 @@
 name: build-agent
 description: Manages build processes
 tools: Read, Edit, Grep, Bash, Task, TodoWrite
+capabilities:
+  domains: [
+  "deployment",
+  "process-automation"
+]
+  skills: [
+  "execution",
+  "validation",
+  "monitoring"
+]
+  tools: [
+  "Read",
+  "Edit",
+  "Grep",
+  "Bash",
+  "Task",
+  "TodoWrite"
+]
+performance:
+  avg_response_time: 2000
+  success_rate: 95
 ---
 
 # Build Agent

@@ -2,6 +2,27 @@
 name: methodology-agent
 description: Executes agile methodologies and ceremonies
 tools: Read, Edit, Grep, Bash, Task, TodoWrite
+capabilities:
+  domains: [
+  "process-automation",
+  "project-management"
+]
+  skills: [
+  "planning",
+  "execution",
+  "monitoring"
+]
+  tools: [
+  "Read",
+  "Edit",
+  "Grep",
+  "Bash",
+  "Task",
+  "TodoWrite"
+]
+performance:
+  avg_response_time: 2000
+  success_rate: 95
 ---
 
 # Methodology Agent

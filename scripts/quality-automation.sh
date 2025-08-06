@@ -66,6 +66,19 @@ validate_vision() {
     # Check for vision document
     if [ -f "$PROJECT_ROOT/docs/architecture/01-product-vision/features/$feature.md" ]; then
         echo -e "${GREEN}✅ Vision document exists${NC}"
+        
+        # Check for PM approval of vision
+        approval_status=$("$SCRIPT_DIR/pm-approval-gate.sh" check "$feature" "vision")
+        if [ "$approval_status" == "approved" ]; then
+            echo -e "${GREEN}✅ Vision approved by PM${NC}"
+        elif [ "$approval_status" == "rejected" ]; then
+            echo -e "${RED}❌ Vision rejected by PM - check feedback${NC}"
+            status=1
+        else
+            echo -e "${YELLOW}⏳ Vision awaiting PM approval${NC}"
+            "$SCRIPT_DIR/pm-approval-gate.sh" request "$feature" "vision" "Feature Vision Document"
+            status=1
+        fi
     else
         echo -e "${RED}❌ Vision document missing${NC}"
         status=1
@@ -126,6 +139,19 @@ validate_decision() {
     # Check for ADR
     if ls "$PROJECT_ROOT/docs/architecture/ADRs/"*"$feature"*.md 1> /dev/null 2>&1; then
         echo -e "${GREEN}✅ ADR created${NC}"
+        
+        # Check for PM approval of ADR
+        approval_status=$("$SCRIPT_DIR/pm-approval-gate.sh" check "$feature" "decision")
+        if [ "$approval_status" == "approved" ]; then
+            echo -e "${GREEN}✅ ADR approved by PM${NC}"
+        elif [ "$approval_status" == "rejected" ]; then
+            echo -e "${RED}❌ ADR rejected by PM - check feedback${NC}"
+            status=1
+        else
+            echo -e "${YELLOW}⏳ ADR awaiting PM approval${NC}"
+            "$SCRIPT_DIR/pm-approval-gate.sh" request "$feature" "decision" "ADR and Physical Architecture"
+            status=1
+        fi
     else
         echo -e "${RED}❌ ADR missing${NC}"
         status=1

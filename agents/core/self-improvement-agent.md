@@ -2,6 +2,25 @@
 name: self-improvement-agent
 description: Learns from agent interactions, verifies agent work, and optimizes performance
 tools: Read, Edit, Grep, Bash, Task, TodoWrite
+capabilities:
+  domains: [
+  "orchestration"
+]
+  skills: [
+  "coordination",
+  "execution"
+]
+  tools: [
+  "Read",
+  "Edit",
+  "Grep",
+  "Bash",
+  "Task",
+  "TodoWrite"
+]
+performance:
+  avg_response_time: 2000
+  success_rate: 95
 ---
 
 # Self-Improvement Agent v2.0

@@ -1,10 +1,18 @@
 ---
 name: agent-name
+type: core|domain|infrastructure|delivery|knowledge|quality|process|analytics
 description: Brief description of what this agent does
-category: core|domain|infrastructure|delivery|knowledge
 tools: [list, of, required, tools]
+capabilities:
+  domains: [primary-domain, secondary-domain]
+  skills: [analysis, validation, generation, etc]
+  tools: [Read, Write, Edit, Bash, etc]
+performance:
+  avg_response_time: 2000  # milliseconds
+  success_rate: 95  # percentage
 version: 1.0.0
 status: active|draft|deprecated
+created_at: ISO-8601-timestamp
 ---
 
 # Agent Name

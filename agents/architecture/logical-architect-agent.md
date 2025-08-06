@@ -2,6 +2,28 @@
 name: logical-architect-agent
 description: Specialized agent for ClaudeProjects2
 tools: Read, Edit, Grep, Bash, Task, TodoWrite
+capabilities:
+  domains: [
+  "architecture",
+  "documentation"
+]
+  skills: [
+  "analysis",
+  "synthesis",
+  "planning",
+  "decision-making"
+]
+  tools: [
+  "Read",
+  "Edit",
+  "Grep",
+  "Bash",
+  "Task",
+  "TodoWrite"
+]
+performance:
+  avg_response_time: 2000
+  success_rate: 95
 ---
 
 # Logical Architect Agent

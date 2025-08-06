@@ -2,6 +2,28 @@
 name: feedback-agent
 description: Analyzes feedback, identifies patterns, and drives improvements
 tools: Read, Edit, Grep, Bash, Task, TodoWrite
+capabilities:
+  domains: [
+  "quality-assurance",
+  "feedback-processing"
+]
+  skills: [
+  "validation",
+  "analysis",
+  "reporting",
+  "pattern-recognition"
+]
+  tools: [
+  "Read",
+  "Edit",
+  "Grep",
+  "Bash",
+  "Task",
+  "TodoWrite"
+]
+performance:
+  avg_response_time: 2000
+  success_rate: 95
 ---
 
 # Feedback Agent

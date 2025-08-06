@@ -2,6 +2,28 @@
 name: pm-guide-agent
 description: Interactive assistant that guides PM through CPDM phases
 tools: Read, Edit, Grep, Bash, Task, TodoWrite
+capabilities:
+  domains: [
+  "process-automation",
+  "project-management"
+]
+  skills: [
+  "planning",
+  "execution",
+  "monitoring",
+  "coordination"
+]
+  tools: [
+  "Read",
+  "Edit",
+  "Grep",
+  "Bash",
+  "Task",
+  "TodoWrite"
+]
+performance:
+  avg_response_time: 2000
+  success_rate: 95
 ---
 
 # PM Guide Agent

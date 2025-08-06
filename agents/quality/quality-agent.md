@@ -2,6 +2,28 @@
 name: quality-agent
 description: Automated quality enforcement and compliance checking for CPDM phases
 tools: Read, Edit, Grep, Bash, Task, TodoWrite
+capabilities:
+  domains: [
+  "quality-assurance",
+  "feedback-processing"
+]
+  skills: [
+  "validation",
+  "analysis",
+  "reporting",
+  "pattern-recognition"
+]
+  tools: [
+  "Read",
+  "Edit",
+  "Grep",
+  "Bash",
+  "Task",
+  "TodoWrite"
+]
+performance:
+  avg_response_time: 2000
+  success_rate: 95
 ---
 
 # Quality Agent v2.0

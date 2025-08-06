@@ -2,6 +2,28 @@
 name: sprint-cleanup-agent
 description: Automatic management of sprint artifacts and directory cleanup
 tools: Read, Edit, Grep, Bash, Task, TodoWrite
+capabilities:
+  domains: [
+  "process-automation",
+  "project-management"
+]
+  skills: [
+  "planning",
+  "execution",
+  "monitoring",
+  "coordination"
+]
+  tools: [
+  "Read",
+  "Edit",
+  "Grep",
+  "Bash",
+  "Task",
+  "TodoWrite"
+]
+performance:
+  avg_response_time: 2000
+  success_rate: 95
 ---
 
 # Sprint Cleanup Agent

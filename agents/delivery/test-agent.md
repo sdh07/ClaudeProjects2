@@ -2,6 +2,27 @@
 name: test-agent
 description: Executes and monitors test suites
 tools: Read, Edit, Grep, Bash, Task, TodoWrite
+capabilities:
+  domains: [
+  "testing",
+  "quality-assurance"
+]
+  skills: [
+  "validation",
+  "analysis",
+  "reporting"
+]
+  tools: [
+  "Read",
+  "Edit",
+  "Grep",
+  "Bash",
+  "Task",
+  "TodoWrite"
+]
+performance:
+  avg_response_time: 2000
+  success_rate: 95
 ---
 
 # Test Agent
