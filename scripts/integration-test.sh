@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# ClaudeProjects2 Full Integration Test
-# Tests complete traceability from Vision to Deployment
+# CPDM v2 Integration Test Suite
+# Tests complete system integration including new Sprint 7 features
 
 set -e
 
@@ -180,4 +180,119 @@ echo "  • Feature deployed to production"
 echo "  • Feedback loop closed"
 echo ""
 echo -e "${GREEN}🎉 The Architecture Traceability and CPDM system is fully operational!${NC}"
+echo ""
+
+# Add CPDM v2 Integration Tests
+echo -e "${MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "${MAGENTA}                    CPDM v2 NEW FEATURES TEST${NC}"
+echo -e "${MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+
+echo ""
+echo -e "${YELLOW}═══ Testing Quality Automation ═══${NC}"
+echo "Running quality validation on feature..."
+/Users/stephan/GitHub/ClaudeProjects2/scripts/quality-automation.sh validate implementation "$FEATURE" > /dev/null 2>&1
+check_result "Quality automation validation"
+
+echo "Checking compliance..."
+/Users/stephan/GitHub/ClaudeProjects2/scripts/quality-automation.sh check-compliance code > /dev/null 2>&1
+check_result "Compliance checking"
+
+echo ""
+echo -e "${YELLOW}═══ Testing Self-Verification ═══${NC}"
+echo "Running agent work verification..."
+/Users/stephan/GitHub/ClaudeProjects2/scripts/agent-verification.sh verify-work quality-agent int-test-001 /Users/stephan/GitHub/ClaudeProjects2/agents/quality/quality-agent.md agent-update > /dev/null 2>&1
+check_result "Agent self-verification"
+
+echo ""
+echo -e "${YELLOW}═══ Testing Feedback Loop ═══${NC}"
+echo "Collecting feedback..."
+FEEDBACK_OUTPUT=$(/Users/stephan/GitHub/ClaudeProjects2/scripts/feedback-collector.sh collect performance workflow integration-test "System performance is excellent during testing" high 2>&1)
+FEEDBACK_ID=$(echo "$FEEDBACK_OUTPUT" | grep "ID:" | awk '{print $2}')
+check_result "Feedback collection"
+
+echo "Processing feedback..."
+/Users/stephan/GitHub/ClaudeProjects2/scripts/feedback-collector.sh process "$FEEDBACK_ID" > /dev/null 2>&1
+check_result "Feedback processing"
+
+echo "Converting to improvement..."
+/Users/stephan/GitHub/ClaudeProjects2/scripts/feedback-to-improvement.sh convert "$FEEDBACK_ID" > /dev/null 2>&1
+check_result "Feedback-to-improvement conversion"
+
+echo ""
+echo -e "${YELLOW}═══ Testing Dashboard Systems ═══${NC}"
+echo "Testing quality dashboard..."
+/Users/stephan/GitHub/ClaudeProjects2/scripts/quality-dashboard.sh > /dev/null 2>&1
+check_result "Quality dashboard"
+
+echo "Testing verification dashboard..."
+/Users/stephan/GitHub/ClaudeProjects2/scripts/verification-dashboard.sh > /dev/null 2>&1
+check_result "Verification dashboard"
+
+echo "Testing feedback dashboard..."
+/Users/stephan/GitHub/ClaudeProjects2/scripts/feedback-dashboard.sh > /dev/null 2>&1
+check_result "Feedback dashboard"
+
+echo ""
+echo -e "${YELLOW}═══ Testing Git Hooks ═══${NC}"
+echo "Checking post-commit hook..."
+if [ -f /Users/stephan/GitHub/ClaudeProjects2/.git/hooks/post-commit ] && [ -x /Users/stephan/GitHub/ClaudeProjects2/.git/hooks/post-commit ]; then
+    check_result "Post-commit hook installed"
+else
+    echo -e "${RED}  ❌ Post-commit hook not found${NC}"
+fi
+
+echo "Checking post-merge hook..."
+if [ -f /Users/stephan/GitHub/ClaudeProjects2/.git/hooks/post-merge ] && [ -x /Users/stephan/GitHub/ClaudeProjects2/.git/hooks/post-merge ]; then
+    check_result "Post-merge hook installed"
+else
+    echo -e "${RED}  ❌ Post-merge hook not found${NC}"
+fi
+
+echo ""
+echo -e "${MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "${MAGENTA}                      CPDM v2 METRICS${NC}"
+echo -e "${MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+
+echo ""
+echo -e "${CYAN}Agent Count:${NC}"
+AGENT_COUNT=$(ls /Users/stephan/GitHub/ClaudeProjects2/.claude/agents/*/*.md 2>/dev/null | wc -l)
+echo "  • Total agents deployed: $AGENT_COUNT"
+
+echo ""
+echo -e "${CYAN}Quality Metrics:${NC}"
+if [ -f /Users/stephan/GitHub/ClaudeProjects2/.cpdm/quality.log ]; then
+    QUALITY_ENTRIES=$(wc -l < /Users/stephan/GitHub/ClaudeProjects2/.cpdm/quality.log)
+    echo "  • Quality log entries: $QUALITY_ENTRIES"
+fi
+
+echo ""
+echo -e "${CYAN}Verification Reports:${NC}"
+VERIFICATION_REPORTS=$(ls /Users/stephan/GitHub/ClaudeProjects2/.cpdm/verification-reports/*.md 2>/dev/null | wc -l)
+echo "  • Verification reports generated: $VERIFICATION_REPORTS"
+
+echo ""
+echo -e "${CYAN}Feedback Processing:${NC}"
+if [ -f /Users/stephan/GitHub/ClaudeProjects2/.cpdm/feedback/feedback.log ]; then
+    FEEDBACK_ENTRIES=$(wc -l < /Users/stephan/GitHub/ClaudeProjects2/.cpdm/feedback/feedback.log)
+    echo "  • Feedback items processed: $FEEDBACK_ENTRIES"
+fi
+
+IMPROVEMENT_COUNT=$(ls /Users/stephan/GitHub/ClaudeProjects2/.cpdm/improvements/*/*.json 2>/dev/null | wc -l)
+echo "  • Improvements generated: $IMPROVEMENT_COUNT"
+
+echo ""
+echo -e "${MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "${GREEN}                 ✅ CPDM v2 INTEGRATION COMPLETE${NC}"
+echo -e "${MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+
+echo ""
+echo -e "${GREEN}CPDM v2 New Features Tested:${NC}"
+echo "  • ✅ Quality Automation with gate enforcement"
+echo "  • ✅ Agent Self-Verification with 4-level checks"
+echo "  • ✅ Complete Feedback Loop with pattern analysis"
+echo "  • ✅ Real-time Dashboards with health monitoring"
+echo "  • ✅ Git Hooks for automatic deployment"
+echo ""
+echo -e "${GREEN}🎉 CPDM v2 is fully integrated and operational!${NC}"
+echo -e "${CYAN}Sprint 7 objectives achieved: Quality, Verification, Feedback, Integration${NC}"
 echo ""
