@@ -1,0 +1,335 @@
+# Knowledge Domain Model
+# Complete object model for the Knowledge Domain
+
+domain:
+  name: Knowledge Domain
+  layer: domain
+  purpose: |
+    Manages all knowledge capture, organization, retrieval, and evolution.
+    Implements the "Living Knowledge Systems" component of the Triple Helix.
+  bounded_context: |
+    Includes: Documents, notes, insights, links, tags, learning patterns
+    Excludes: UI rendering (Presentation), workflow orchestration (Application),
+             file storage (Infrastructure)
+
+aggregates:
+  - name: KnowledgeBase
+    root_entity: KnowledgeBase
+    description: |
+      The complete knowledge repository for a project or user
+    contains:
+      entities:
+        - name: KnowledgeBase
+          identity: UUID
+          lifecycle: created → active → archived
+          attributes:
+            - id: UUID, required, unique identifier
+            - name: string, required, knowledge base name
+            - owner: UserID, required, who owns this
+            - created: timestamp, required
+            - lastModified: timestamp, required
+            - statistics: KnowledgeStats, required
+      value_objects:
+        - name: KnowledgeStats
+          immutable: false
+          attributes:
+            - documentCount: number
+            - linkCount: number
+            - insightCount: number
+            - lastAccessed: timestamp
+    invariants:
+      - "Knowledge base must have an owner"
+      - "Statistics must be kept in sync with content"
+    boundaries:
+      - "All document operations go through KnowledgeBase"
+      - "External access by knowledge base ID only"
+
+  - name: Document
+    root_entity: Document
+    description: |
+      A single document with content, metadata, and relationships
+    contains:
+      entities:
+        - name: Document
+          identity: UUID + version
+          lifecycle: draft → published → revised → archived
+          attributes:
+            - id: UUID, required
+            - title: string, required
+            - content: MarkdownContent, required
+            - metadata: DocumentMetadata, required
+            - version: Version, required
+            - sections: Section[], optional
+        - name: Section
+          identity: Document ID + section ID
+          lifecycle: tied to parent document
+          attributes:
+            - id: string, required
+            - heading: string, required
+            - level: number, required (1-6)
+            - content: MarkdownContent, required
+      value_objects:
+        - name: DocumentMetadata
+          immutable: false
+          attributes:
+            - author: UserID
+            - created: timestamp
+            - modified: timestamp
+            - tags: Tag[]
+            - type: DocumentType
+        - name: MarkdownContent
+          immutable: true
+          attributes:
+            - raw: string
+            - rendered: string (cached)
+            - links: Link[]
+        - name: Version
+          immutable: true
+          attributes:
+            - major: number
+            - minor: number
+            - patch: number
+            - hash: string
+    invariants:
+      - "Document must have content"
+      - "Version must increment on changes"
+      - "Links must be valid"
+    boundaries:
+      - "Sections only accessible through Document"
+      - "Version history maintained separately"
+
+entities:
+  - name: Insight
+    identity: UUID
+    lifecycle: discovered → validated → applied → obsolete
+    attributes:
+      - id: UUID
+      - pattern: string
+      - description: string
+      - evidence: Reference[]
+      - confidence: number (0-1)
+      - discovered: timestamp
+    relationships:
+      - type: derived-from
+        target: Document[]
+        description: Which documents led to this insight
+    business_rules:
+      - "Insight must have at least 2 evidence sources"
+      - "Confidence updates based on usage"
+
+value_objects:
+  - name: Link
+    immutable: true
+    attributes:
+      - source: DocumentReference
+      - target: DocumentReference
+      - type: LinkType
+      - context: string (optional)
+    equality: "Compared by source + target + type"
+    validation:
+      - "Source and target must exist"
+      - "No self-links unless type is 'section'"
+    examples:
+      - "[[Document A]] references [[Document B]]"
+
+  - name: Tag
+    immutable: true
+    attributes:
+      - name: string
+      - category: string (optional)
+      - color: string (optional)
+    equality: "Compared by name (case-insensitive)"
+    validation:
+      - "Name must be alphanumeric + dash/underscore"
+      - "Max length 50 characters"
+
+  - name: DocumentType
+    immutable: true
+    attributes:
+      - type: enum[note, guide, reference, template, report]
+      - icon: string
+      - defaultTemplate: string
+    equality: "Compared by type"
+
+  - name: LinkType
+    immutable: true
+    attributes:
+      - type: enum[reference, related, parent, child, contradiction]
+      - bidirectional: boolean
+    equality: "Compared by type"
+
+domain_services:
+  - name: KnowledgeIndexingService
+    stateless: true
+    responsibility: |
+      Indexes documents for search and discovery
+    operations:
+      - name: indexDocument
+        input: Document
+        output: IndexResult
+        description: |
+          Full-text index plus relationship extraction
+        business_rules:
+          - "Extract all [[wiki-links]]"
+          - "Identify key concepts"
+          - "Generate embeddings"
+      - name: findSimilar
+        input: Document, threshold
+        output: List<Document>
+        description: |
+          Find semantically similar documents
+    dependencies:
+      - SearchEngine
+      - EmbeddingService
+
+  - name: LinkResolutionService
+    stateless: true
+    responsibility: |
+      Manages bi-directional links and backlinks
+    operations:
+      - name: resolveLinks
+        input: Document
+        output: ResolvedLinks
+        description: |
+          Convert [[wiki-links]] to actual references
+      - name: updateBacklinks
+        input: Document
+        output: void
+        description: |
+          Update all documents that link to this one
+    dependencies:
+      - DocumentRepository
+
+  - name: InsightGenerationService
+    stateless: true
+    responsibility: |
+      Discovers patterns and generates insights from knowledge
+    operations:
+      - name: analyzeKnowledge
+        input: KnowledgeBase
+        output: List<Insight>
+        description: |
+          Use AI to find patterns across documents
+      - name: validateInsight
+        input: Insight
+        output: ValidationResult
+        description: |
+          Check if insight still holds true
+
+domain_events:
+  - name: DocumentCreated
+    trigger: "New document is added to knowledge base"
+    payload:
+      - documentId: UUID
+      - knowledgeBaseId: UUID
+      - title: string
+      - type: DocumentType
+    subscribers:
+      - domain: Agent Domain
+        reason: "Agents need to know about new knowledge"
+      - domain: Value Analytics Domain
+        reason: "Track knowledge growth metrics"
+
+  - name: InsightDiscovered
+    trigger: "New pattern found across documents"
+    payload:
+      - insightId: UUID
+      - pattern: string
+      - confidence: number
+      - relatedDocuments: UUID[]
+    subscribers:
+      - domain: Methodology Domain
+        reason: "May improve methodologies"
+      - domain: User Domain
+        reason: "Notify user of discovery"
+
+  - name: LinkEstablished
+    trigger: "New link created between documents"
+    payload:
+      - sourceId: UUID
+      - targetId: UUID
+      - linkType: LinkType
+    subscribers:
+      - domain: Knowledge Domain
+        reason: "Update backlinks"
+
+repositories:
+  - name: DocumentRepository
+    aggregate: Document
+    operations:
+      - save(document): void
+      - findById(id): Document
+      - findByTitle(title): Document
+      - findByTags(tags): List<Document>
+      - searchFullText(query): List<Document>
+    persistence_notes: |
+      Store as markdown files in filesystem
+      Maintain search index in SQLite
+      Cache rendered HTML
+
+  - name: KnowledgeBaseRepository
+    aggregate: KnowledgeBase
+    operations:
+      - save(knowledgeBase): void
+      - findById(id): KnowledgeBase
+      - findByOwner(userId): List<KnowledgeBase>
+    persistence_notes: |
+      Store metadata in SQLite
+      Documents stored separately
+
+shared_kernel:
+  shared_with: [Project Domain, Methodology Domain, Agent Domain]
+  value_objects:
+    - name: UserID
+      reason: "Common user reference"
+    - name: Timestamp
+      reason: "Consistent time handling"
+  interfaces:
+    - name: SearchableContent
+      purpose: "Common search interface"
+
+traceability:
+  vision_elements:
+    - element: Living Knowledge Systems
+      how: "Implements knowledge that compounds automatically"
+    - element: Triple Helix - Knowledge
+      how: "Core knowledge component of innovation model"
+  features_supported:
+    - feature_id: F-KNOW-001
+      objects_used: [Document, Link, KnowledgeIndexingService]
+    - feature_id: F-KNOW-003 (Obsidian Editor)
+      objects_used: [Document, MarkdownContent, LinkResolutionService]
+  architecture_decisions:
+    - adr: ADR-003-Markdown-Storage
+      impact: "Documents stored as .md files"
+    - adr: ADR-007-Bidirectional-Links
+      impact: "LinkResolutionService maintains backlinks"
+
+examples:
+  - scenario: "User creates a new document with links"
+    flow: |
+      1. CreateDocumentCommand received
+      2. Document aggregate created with MarkdownContent
+      3. LinkResolutionService extracts [[wiki-links]]
+      4. Links validated and created
+      5. DocumentCreated event published
+      6. Backlinks updated in linked documents
+      7. Document indexed for search
+    objects_involved:
+      - Document (aggregate root)
+      - MarkdownContent (value object)
+      - Link (value object)
+      - LinkResolutionService
+      - KnowledgeIndexingService
+      - DocumentCreated (event)
+
+metrics:
+  complexity:
+    aggregates: 2
+    entities: 3
+    value_objects: 6
+    services: 3
+  coupling:
+    depends_on: []
+    depended_by: [Project Domain, Agent Domain, Methodology Domain]
+    coupling_score: 3 (healthy)

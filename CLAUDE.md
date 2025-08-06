@@ -19,6 +19,15 @@ You are the master orchestrator for ClaudeProjects2, an architecture-centric pla
 
 ### Domain Agents (Implemented) ✅
 - `project-agent`: Manages sprints, tasks, and agile workflows
+- `vision-agent`: Maintains product vision and feature alignment (Sprint 5) ✅
+
+### Architecture Agents (Sprint 5) ✅
+- `logical-architect-agent`: Manages Layer→Domain→Object traceability
+- `physical-architect-agent`: Maps objects to components and generates ADRs
+
+### Quality & Analytics Agents (Sprint 5) ✅
+- `quality-agent`: Enforces quality gates at phase transitions
+- `trace-agent`: Maintains traceability and collects feedback
 
 ### Infrastructure Agents (Implemented) ✅
 - `version-agent`: Git operations and version control
@@ -41,13 +50,19 @@ You are the master orchestrator for ClaudeProjects2, an architecture-centric pla
 3. **Multi-domain tasks**: Coordinate agent teams
 4. **Unknown tasks**: Use architecture-designer first
 
-### Sprint 3 Orchestration Rules
-1. Sprint planning → project-agent (once implemented)
-2. Code implementation → direct or code-generator-enhanced
-3. Architecture decisions → architecture-designer → ADR
-4. Git operations → version-agent (once implemented)
-5. Documentation → user-guide-writer
-6. Code reviews → code-review-agent (once implemented)
+### CPDM Orchestration (Active)
+1. **New features** → Start with `cpdm-workflow-engine.sh start`
+2. **Vision updates** → vision-agent → automatic re-prioritization
+3. **Design phase** → logical-architect-agent → domain modeling
+4. **Decisions** → physical-architect-agent → ADR generation
+5. **Quality gates** → quality-agent → automated enforcement
+6. **Feedback** → trace-agent → vision updates
+
+### GitHub Integration
+- All features create GitHub issues automatically
+- ADRs tracked as issues and PRs
+- Quality gates tied to PR checks
+- Use `gh` CLI or issue-agent for GitHub operations
 
 ## Project Structure
 See file organization: @docs/FILE-ORGANIZATION-GUIDE.md
@@ -71,6 +86,15 @@ See file organization: @docs/FILE-ORGANIZATION-GUIDE.md
 - Clean file organization (see guide)
 
 ## Common Commands
+
+### CPDM Commands (New)
+- Start feature: `./scripts/cpdm-workflow-engine.sh start "name" "description"`
+- Transition phase: `./scripts/cpdm-workflow-engine.sh transition "name"`
+- Check status: `./scripts/cpdm-workflow-engine.sh status`
+- View metrics: `./scripts/cpdm-workflow-engine.sh metrics`
+- Run integration test: `./scripts/integration-test.sh`
+
+### Agent Commands
 - Check agents: `ls agents/**/*.md`
 - Test message queue: `./scripts/test-queue.sh`
 - Validate agents: `./scripts/validate-agents.sh`
@@ -130,16 +154,29 @@ Sprint 4: Development Perfection (COMPLETE! 🎉)
   - Self-improvement agent
 - 🏆 Result: Production-ready app at ~/workspace/notes-app
 
-Sprint 5: Integration Hub (PLANNED)
-- 🎯 Goal: Integrate ClaudeProjects2 with developer tools
-- 📅 Timeline: 5 days (Starting when approved)
-- 🔌 Focus: VSCode, GitHub Actions, CI/CD, Notifications
-- 📋 Deliverables:
-  - VSCode extension
-  - GitHub Actions integration
-  - Notification framework
-  - CI/CD automation
-- 🎯 Success: 50% productivity improvement
+Sprint 5: Architecture Traceability & CPDM (COMPLETE! 🎉)
+- ✅ Duration: 10 days - 100% on schedule
+- ✅ Delivered: Complete traceability and CPDM methodology
+- ✅ Key achievements:
+  - 5 new architecture agents (vision, logical, physical, quality, trace)
+  - Complete traceability: Vision→Feature→Layer→Domain→Object→Component→Deployment
+  - CPDM: 7-phase methodology with quality gates
+  - 100% gate automation achieved
+  - GitHub-native integration
+  - Comprehensive PM documentation
+- 🏆 Result: CPDM operational, ready for Sprint 6 test drive
+
+Sprint 6: CPDM Test Drive (PLANNED)
+- 🎯 Goal: Validate CPDM from Product Manager perspective
+- 📅 Timeline: 5 days (Monday-Friday)
+- 🔍 Focus: PM experience with real scenarios
+- 📋 Test Scenarios:
+  - Day 1: Morning routine & setup
+  - Day 2: YOUR vision → Sprint 7 plan
+  - Day 3: Quality gate challenges
+  - Day 4: Data-driven sprint planning
+  - Day 5: Crisis management & review
+- ⚠️ Critical: PM defines own vision scenario for Sprint 7
 
 ## Issue Management
 - Templates: `.github/ISSUE_TEMPLATE/`
@@ -174,6 +211,14 @@ Sprint 5: Integration Hub (PLANNED)
 - **Visual Feedback**: Agent work must be visible to users
 - **Quick MVPs**: Use Task tool for rapid prototyping
 - **Documentation**: Treat as first-class deliverable
+
+## Sprint 5 Focus Areas
+- **Product Vision**: How PO maintains vision → features
+- **Logical Architecture**: How features → domains/objects
+- **Physical Architecture**: How objects → components/ADRs
+- **CPDM**: 7-phase methodology from vision to deployment
+- **Traceability**: Bidirectional linking at all levels
+- **Quality Gates**: Automated enforcement at each phase
 
 ## Self-Maintenance Protocol
 - During work: Use `#` to add learnings (auto-updates CLAUDE.md)

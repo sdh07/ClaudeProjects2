@@ -1,0 +1,86 @@
+# Epic Template for Product Vision Traceability
+# This template ensures all epics trace back to the product vision
+
+epic:
+  # Unique identifier following pattern E-[DOMAIN]-[NUMBER]
+  id: E-DOMAIN-000
+  
+  # Metadata
+  created_date: YYYY-MM-DD
+  created_by: [PM Name]
+  status: proposed|approved|in_progress|completed
+  
+  # Vision Traceability (REQUIRED)
+  vision_traceability:
+    vision_element: [Triple Helix Component: Methodology|Agents|Knowledge]
+    strategic_objective: [Which objective from vision]
+    target_outcome: [Measurable outcome]
+    
+  # Business Case (REQUIRED)
+  business_case:
+    problem_statement: |
+      Clear description of the problem being solved
+    solution: |
+      Proposed solution approach
+    expected_outcome: |
+      What success looks like
+    success_metrics:
+      - metric_1: [Specific measurable outcome]
+      - metric_2: [Another measurable outcome]
+    business_impact:
+      hours_saved_per_month: [Number]
+      revenue_impact: [Dollar amount]
+      user_satisfaction: [NPS points]
+  
+  # Triple Helix Validation (ALL THREE REQUIRED)
+  triple_helix:
+    methodology:
+      present: true|false
+      description: How this epic uses/creates executable methodologies
+    agents:
+      present: true|false
+      description: Which agents are involved and how
+      agents_involved: [List of agent names]
+    knowledge:
+      present: true|false
+      description: What knowledge is captured/used
+  
+  # Investment & Risk
+  investment:
+    development_effort: [X weeks/sprints]
+    teams_involved: [List of teams]
+    dependencies: [List of dependencies]
+  risk_assessment:
+    level: low|medium|high
+    mitigation: |
+      How risks will be managed
+  
+  # PM Control Points
+  pm_approval:
+    status: pending|approved|rejected
+    approved_by: [PM Name]
+    approval_date: YYYY-MM-DD
+    priority: P0|P1|P2|P3
+    sprint_target: [Sprint number]
+  
+  # Features (populated as features are defined)
+  features:
+    - id: F-EPIC-001
+      title: Feature title
+      status: proposed|approved|in_progress|completed
+    - id: F-EPIC-002
+      title: Another feature
+      status: proposed|approved|in_progress|completed
+  
+  # Notes
+  notes: |
+    Any additional context, decisions, or considerations
+
+# Validation Checklist (must pass all)
+validation:
+  - [ ] Traces to product vision element
+  - [ ] Has clear business case with ROI
+  - [ ] Passes Triple Helix test (all 3 components)
+  - [ ] PM has approved priority
+  - [ ] Success metrics are measurable
+  - [ ] Investment is justified by impact

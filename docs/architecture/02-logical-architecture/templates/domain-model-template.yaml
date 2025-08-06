@@ -1,0 +1,174 @@
+# Domain Model Template
+# Use this template to define complete object models for each domain
+
+domain:
+  name: [Domain Name]
+  layer: [Owning Layer: presentation|application|domain|infrastructure]
+  purpose: |
+    Clear description of why this domain exists and what it manages
+  bounded_context: |
+    Define the boundary - what's inside and what's outside this domain
+    
+# Aggregates are clusters of entities and value objects with a root entity
+aggregates:
+  - name: [Aggregate Name]
+    root_entity: [Root Entity Name]
+    description: |
+      Purpose and responsibility of this aggregate
+    contains:
+      entities:
+        - name: [Entity Name]
+          identity: [How it's uniquely identified]
+          lifecycle: [created → modified → archived → deleted]
+          attributes:
+            - name: [type, required?, description]
+      value_objects:
+        - name: [Value Object Name]
+          immutable: true
+          attributes:
+            - name: [type, description]
+    invariants:
+      - "Business rule that must always be true"
+      - "Another invariant"
+    boundaries:
+      - "All modifications through root entity"
+      - "External access by ID only"
+      - "No direct entity references across aggregates"
+
+# Standalone entities not part of aggregates
+entities:
+  - name: [Entity Name]
+    identity: [How identified, e.g., UUID, natural key]
+    lifecycle: [Creation to deletion flow]
+    attributes:
+      - name: type
+      - name: type
+    relationships:
+      - type: [has-many|has-one|belongs-to]
+        target: [Entity Name]
+        description: [Nature of relationship]
+    business_rules:
+      - "Rule about this entity"
+
+# Value objects are immutable and compared by value
+value_objects:
+  - name: [Value Object Name]
+    immutable: true
+    attributes:
+      - name: type
+    equality: "Compared by [which attributes]"
+    validation:
+      - "Validation rule"
+    examples:
+      - "Valid example"
+
+# Domain services for complex operations spanning multiple aggregates
+domain_services:
+  - name: [Service Name]
+    stateless: true
+    responsibility: |
+      What this service does and why it exists
+    operations:
+      - name: operationName
+        input: [InputType]
+        output: [OutputType]
+        description: |
+          What this operation does
+        business_rules:
+          - "Rule enforced by this operation"
+    dependencies:
+      - [Other services or repositories needed]
+
+# Domain events for loose coupling
+domain_events:
+  - name: [EventName]
+    trigger: "What causes this event"
+    payload:
+      - field: type
+    subscribers:
+      - domain: [Interested Domain]
+        reason: "Why they care"
+    example: |
+      When [trigger] happens, [EventName] is published with [data]
+
+# Repository interfaces (persistence abstraction)
+repositories:
+  - name: [RepositoryName]
+    aggregate: [Aggregate it persists]
+    operations:
+      - save(aggregate): void
+      - findById(id): Aggregate
+      - findBy(criteria): List<Aggregate>
+      - delete(id): void
+    persistence_notes: |
+      Special considerations for storing this aggregate
+
+# Shared kernel (shared with other domains)
+shared_kernel:
+  shared_with: [List of domains that share these]
+  value_objects:
+    - name: [Shared Value Object]
+      reason: "Why it's shared"
+  interfaces:
+    - name: [Shared Interface]
+      purpose: "What it enables"
+
+# Anti-corruption layer (protects from external systems)
+anti_corruption_layer:
+  external_system: [System name]
+  adapters:
+    - name: [AdapterName]
+      translates_from: [External model]
+      translates_to: [Domain model]
+      rules:
+        - "Translation rule"
+
+# Validation rules for the domain
+validation:
+  rules:
+    - "Domain-wide validation rule"
+  constraints:
+    - "Technical or business constraint"
+
+# Traceability
+traceability:
+  vision_elements:
+    - element: [Vision element this serves]
+      how: "How this domain serves the vision"
+  features_supported:
+    - feature_id: [F-XXX]
+      objects_used: [List of objects]
+  architecture_decisions:
+    - adr: [ADR-XXX]
+      impact: "How it affects this domain"
+
+# Examples and scenarios
+examples:
+  - scenario: "User creates a project"
+    flow: |
+      1. CreateProjectCommand received
+      2. Project aggregate created
+      3. ProjectCreatedEvent published
+      4. ProjectRepository saves aggregate
+    objects_involved:
+      - Project (aggregate root)
+      - ProjectStatus (value object)
+      - ProjectRepository
+      - ProjectCreatedEvent
+
+# Notes and considerations
+notes: |
+  Any additional context, future considerations, or technical notes
+  about this domain model.
+
+# Metrics for domain health
+metrics:
+  complexity:
+    aggregates: [count]
+    entities: [count]
+    value_objects: [count]
+    services: [count]
+  coupling:
+    depends_on: [List of domains]
+    depended_by: [List of domains]
+    coupling_score: [calculated]

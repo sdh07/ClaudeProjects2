@@ -1,0 +1,212 @@
+# ADR Automation Configuration
+# Used by physical-architect-agent to generate and track ADRs
+# Integrates with GitHub for tracking and collaboration
+
+automation:
+  # All ADRs require confirmation per user requirement
+  confirmation_required: true
+  
+  # GitHub integration for ADR tracking
+  github_integration:
+    enabled: true
+    auto_create_issue: true
+    auto_create_pr: false  # Manual PR creation for now
+    label_adrs: "ADR"
+    assign_to: ["@sdh07", "@architect-team"]
+    
+    issue_template: |
+      ## ADR-{number}: {title}
+      
+      **Status**: Awaiting Confirmation
+      **Triggered by**: {trigger}
+      **Impact**: {impact_level}
+      
+      ### Decision Required
+      {decision_summary}
+      
+      ### Review Checklist
+      - [ ] Context understood
+      - [ ] Alternatives considered
+      - [ ] Impact assessed
+      - [ ] Team consulted
+      
+      **Action Required**: Please review and confirm in the ADR document.
+      
+    pr_description: |
+      This PR adds ADR-{number} to document the decision about {title}.
+      
+      - Triggered by: {trigger}
+      - Status: {status}
+      - Confirmed by: {confirmer}
+  
+  # Automatic trigger conditions (still need confirmation)
+  triggers:
+    technology_introduction:
+      description: "New technology added to stack"
+      template_fields:
+        context: "New technology {technology} introduced for {purpose}"
+        decision: "Adopt {technology} for {component}"
+      examples:
+        - SQLite for search indexing
+        - WebSockets for real-time
+        - Docker for containerization
+    
+    performance_optimization:
+      threshold: 50  # percentage improvement
+      template_fields:
+        context: "Performance requirement of {requirement} not met by current approach"
+        decision: "Implement {optimization} to achieve {improvement}"
+      examples:
+        - Caching strategy change
+        - Index optimization
+        - Algorithm replacement
+    
+    pattern_change:
+      types:
+        - security_pattern
+        - storage_pattern
+        - communication_pattern
+        - integration_pattern
+      template_fields:
+        context: "Current {pattern_type} pattern insufficient for {requirement}"
+        decision: "Change from {old_pattern} to {new_pattern}"
+    
+    scale_threshold:
+      triggers:
+        - users: 100
+        - data_volume: 10GB
+        - concurrent_operations: 50
+      template_fields:
+        context: "System approaching scale threshold of {threshold}"
+        decision: "Implement {scaling_solution}"
+    
+    architecture_deviation:
+      description: "Deviation from standard patterns"
+      template_fields:
+        context: "Standard pattern {pattern} not suitable because {reason}"
+        decision: "Use {alternative} instead"
+
+# ADR lifecycle states
+lifecycle:
+  states:
+    - proposed           # Initial state
+    - awaiting_confirmation  # Sent for approval
+    - confirmed         # Approved by user/PM
+    - accepted          # Implemented
+    - deprecated        # No longer valid
+    - superseded        # Replaced by another ADR
+  
+  transitions:
+    proposed_to_awaiting: "Send confirmation request"
+    awaiting_to_confirmed: "User/PM approves"
+    confirmed_to_accepted: "Implementation complete"
+    accepted_to_deprecated: "No longer relevant"
+    accepted_to_superseded: "Replaced by new ADR"
+
+# ADR registry tracking
+registry:
+  location: /docs/architecture/ADRs/registry.yaml
+  fields:
+    - number: sequential
+    - title: string
+    - status: lifecycle_state
+    - date_created: timestamp
+    - date_confirmed: timestamp
+    - created_by: agent_name
+    - confirmed_by: user_name
+    - affects: component_list
+    - supersedes: adr_number
+    - superseded_by: adr_number
+
+# Confirmation request format
+confirmation_request:
+  channels:
+    - message_queue: /.claudeprojects/messages/adr-confirmations/
+    - notification: console_output
+    - documentation: /docs/architecture/ADRs/pending/
+  
+  template:
+    subject: "ADR Confirmation Required: {title}"
+    body: |
+      An Architecture Decision Record requires your confirmation:
+      
+      ADR Number: {number}
+      Title: {title}
+      Triggered by: {trigger}
+      
+      Context:
+      {context}
+      
+      Proposed Decision:
+      {decision}
+      
+      Benefits:
+      {benefits}
+      
+      Trade-offs:
+      {tradeoffs}
+      
+      Please respond with:
+      - CONFIRM: Accept as-is
+      - MODIFY: Request changes (specify)
+      - REJECT: Do not proceed (provide reason)
+      - DEFER: Postpone decision
+  
+  timeout: 48_hours
+  reminder_after: 24_hours
+
+# Technology preference ADRs (per user requirement)
+technology_preferences:
+  should_document:
+    - language_choices
+    - framework_selections
+    - library_adoptions
+    - tool_decisions
+    - platform_choices
+  
+  template_structure:
+    evaluation_criteria:
+      - performance
+      - maintainability
+      - community_support
+      - learning_curve
+      - cost
+      - security
+    comparison_matrix: required
+    recommendation: required
+    fallback_option: required
+
+# Validation rules
+validation:
+  required_fields:
+    - number
+    - title
+    - status
+    - context
+    - decision
+    - consequences
+    - traceability
+  
+  number_format: "ADR-{sequential_number:03d}"
+  title_format: "{verb} {object} for {purpose}"
+  
+  traceability_links:
+    must_reference:
+      - triggering_element
+      - affected_components
+    should_reference:
+      - related_adrs
+      - vision_elements
+
+# Metrics tracking
+metrics:
+  track:
+    - total_adrs
+    - pending_confirmations
+    - average_confirmation_time
+    - adrs_per_sprint
+    - superseded_ratio
+  
+  reporting:
+    frequency: sprint_end
+    location: /docs/architecture/ADRs/metrics.md

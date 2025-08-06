@@ -1,0 +1,137 @@
+# Vision Update Template
+# For documenting any changes to the product vision with full traceability
+
+vision_update:
+  # Metadata
+  update_id: VU-YYYY-MM-DD-001
+  date: YYYY-MM-DD
+  requested_by: [Name and role]
+  approved_by: [PM Name]
+  
+  # Change Classification
+  change_type:
+    level: minor|major|pivot
+    category: refinement|extension|correction|strategic_shift
+    urgency: routine|important|critical
+  
+  # Change Details
+  change_description:
+    element_affected: vision_statement|strategic_objective|success_metric|triple_helix
+    current_state: |
+      What it currently says/means
+    proposed_state: |
+      What it should say/mean
+    rationale: |
+      Why this change is needed (market signal, user feedback, business need)
+  
+  # Impact Analysis (REQUIRED)
+  impact_analysis:
+    affected_epics:
+      - epic_id: E-DOMAIN-000
+        impact: none|minor|major|blocking
+        action_required: [Description of needed changes]
+    affected_features:
+      - feature_id: F-EPIC-000
+        impact: none|minor|major|blocking
+        action_required: [Description of needed changes]
+    affected_sprints:
+      - sprint_number: [Number]
+        impact: [Description]
+        action_required: [Re-planning needed?]
+    affected_agents:
+      - agent_name: [Name]
+        impact: [Configuration or logic change needed]
+  
+  # Business Justification (REQUIRED for major changes)
+  business_justification:
+    market_signal: |
+      What market change drives this
+    competitive_pressure: |
+      Competitive landscape consideration
+    user_feedback: |
+      What users are telling us
+    revenue_impact: |
+      How this affects business model
+    risk_of_not_changing: |
+      What happens if we don't make this change
+  
+  # Triple Helix Validation
+  triple_helix_impact:
+    methodology:
+      affected: yes|no
+      changes_needed: [Description if yes]
+    agents:
+      affected: yes|no
+      changes_needed: [Description if yes]
+    knowledge:
+      affected: yes|no
+      changes_needed: [Description if yes]
+  
+  # Implementation Plan
+  implementation:
+    documentation_updates:
+      - document: /path/to/document.md
+        changes: [Description of changes needed]
+    communication_plan:
+      - audience: [All teams|Specific team]
+        message: [Key points to communicate]
+        channel: [Email|Meeting|Slack]
+    cascade_timeline:
+      - step: Update vision documents
+        owner: vision-agent
+        deadline: [Date]
+      - step: Review affected epics
+        owner: PM
+        deadline: [Date]
+      - step: Adjust sprint plans
+        owner: project-agent
+        deadline: [Date]
+  
+  # Metrics to Track
+  success_metrics:
+    - metric: [What to measure]
+      baseline: [Current value]
+      target: [New target]
+      measurement_date: [When to measure]
+  
+  # Rollback Plan (for major changes)
+  rollback:
+    trigger_conditions: |
+      When we would rollback this change
+    rollback_procedure: |
+      How to rollback if needed
+    decision_authority: [Who can trigger rollback]
+  
+  # Approval Workflow
+  approval:
+    pm_approval:
+      status: pending|approved|rejected
+      date: YYYY-MM-DD
+      comments: |
+        PM feedback or conditions
+    stakeholder_review:
+      required: yes|no
+      status: pending|complete
+      feedback: |
+        Stakeholder input
+  
+  # Audit Trail
+  audit:
+    created: YYYY-MM-DD HH:MM
+    last_modified: YYYY-MM-DD HH:MM
+    version: 1.0
+    previous_versions:
+      - version: 0.9
+        date: YYYY-MM-DD
+        change: [What changed]
+
+# Validation Checklist
+validation:
+  - [ ] Change clearly described
+  - [ ] Impact analysis complete
+  - [ ] Business justification documented
+  - [ ] Triple Helix impact assessed
+  - [ ] Implementation plan defined
+  - [ ] PM approval obtained
+  - [ ] Communication plan ready
+  - [ ] Metrics defined for tracking success

@@ -1,0 +1,117 @@
+# Feature Template for Product Vision Traceability
+# Ensures all features maintain traceability to epics and vision
+
+feature:
+  # Unique identifier following pattern F-[EPIC]-[NUMBER]
+  id: F-EPIC-000
+  
+  # Metadata
+  created_date: YYYY-MM-DD
+  created_by: [Team Member Name]
+  status: proposed|approved|in_progress|completed
+  
+  # Traceability (REQUIRED)
+  traceability:
+    epic_id: E-DOMAIN-000
+    vision_element: [Inherited from epic]
+    strategic_objective: [Inherited from epic]
+  
+  # Feature Details
+  details:
+    title: Clear, descriptive feature title
+    description: |
+      Detailed description of what this feature does
+      and why it's needed
+    user_problem: |
+      The specific user problem being solved
+    solution_approach: |
+      How this feature solves the problem
+  
+  # Triple Helix Components (REQUIRED - specify how)
+  triple_helix:
+    methodology:
+      component: |
+        Which methodology or best practice is involved
+      implementation: |
+        How it's implemented in this feature
+    agents:
+      component: |
+        Which agents are involved
+      implementation: |
+        What the agents do in this feature
+      specific_agents:
+        - agent_name: role/responsibility
+        - agent_name: role/responsibility
+    knowledge:
+      component: |
+        What knowledge is captured or used
+      implementation: |
+        How knowledge flows through this feature
+  
+  # Business Value (REQUIRED)
+  business_value:
+    roi_calculation:
+      investment_hours: [Development hours]
+      value_delivered: [Dollar value or hours saved]
+      roi_multiple: [Value/Investment]
+    productivity_impact:
+      hours_saved_per_user_per_month: [Number]
+      percentage_improvement: [X%]
+    user_impact:
+      affected_users: [Number or percentage]
+      satisfaction_improvement: [NPS points]
+  
+  # User Stories
+  user_stories:
+    - id: US-FEATURE-001
+      actor: [User role]
+      narrative: As a... I want... So that...
+      acceptance_criteria:
+        - criterion_1
+        - criterion_2
+    - id: US-FEATURE-002
+      actor: [Another role]
+      narrative: As a... I want... So that...
+      acceptance_criteria:
+        - criterion_1
+        - criterion_2
+  
+  # Technical Specification
+  technical:
+    architecture_layer: presentation|application|domain|infrastructure
+    components_affected:
+      - component_name
+      - component_name
+    agents_modified:
+      - agent_name: modification_description
+    new_dependencies:
+      - dependency_name
+  
+  # PM Control Points
+  pm_review:
+    priority: P0|P1|P2|P3
+    sprint_assignment: [Sprint number or TBD]
+    go_no_go: go|no_go|needs_refinement
+    approval_date: YYYY-MM-DD
+    approved_by: [PM Name]
+  
+  # Success Criteria
+  success_criteria:
+    - [ ] Metric 1 achieved
+    - [ ] Metric 2 achieved
+    - [ ] User feedback positive
+    - [ ] No regression in other features
+  
+  # Notes
+  notes: |
+    Additional context, decisions, risks, or considerations
+
+# Validation Checklist
+validation:
+  - [ ] Traces to approved epic
+  - [ ] Triple Helix components all present
+  - [ ] ROI calculation > 10x
+  - [ ] User stories complete
+  - [ ] Technical approach defined
+  - [ ] PM has prioritized
+  - [ ] Success criteria measurable

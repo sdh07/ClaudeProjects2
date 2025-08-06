@@ -16,6 +16,10 @@ Our Architecture-Centric Software Development Methodology (AC-SDM) places archit
 4. **Iterative Refinement**: Architecture evolves with understanding
 5. **Quality by Design**: Non-functional requirements considered from the start
 
+## Methodology Integration
+
+> **Note**: This Architecture-Centric Methodology is now enhanced by [CPDM (Claude Projects Development Method)](./methodologies/CPDM/README.md), which provides detailed phase definitions, quality gates, and end-to-end traceability. CPDM implements the architecture-centric principles with concrete workflows and automation.
+
 ## Methodology Phases
 
 ```mermaid
@@ -34,6 +38,13 @@ graph LR
     G --> E
     G --> F
 ```
+
+### Relationship to CPDM
+- **Vision** → CPDM Phase 1: Vision (with Triple Helix validation)
+- **Architecture & Design** → CPDM Phases 2-3: Design & Decision
+- **Implementation** → CPDM Phase 4: Implementation
+- **Validation** → CPDM Phase 5: Quality
+- **Evolution** → CPDM Phases 6-7: Delivery & Feedback
 
 ### Phase 1: Vision & Context
 
