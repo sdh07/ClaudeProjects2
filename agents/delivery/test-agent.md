@@ -1,10 +1,7 @@
 ---
 name: test-agent
 description: Executes and monitors test suites
-category: delivery
-tools: [shell, file_management]
-version: 1.0.0
-status: active
+tools: Read, Edit, Grep, Bash, Task, TodoWrite
 ---
 
 # Test Agent

@@ -1,10 +1,7 @@
 ---
 name: code-review-agent
 description: Reviews code changes and provides feedback
-category: delivery
-tools: [file_management, git, github_api]
-version: 1.0.0
-status: active
+tools: Read, Edit, Grep, Bash, Task, TodoWrite
 ---
 
 # Code Review Agent

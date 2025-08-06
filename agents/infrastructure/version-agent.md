@@ -1,10 +1,7 @@
 ---
 name: version-agent
 description: Handles all git operations and version control
-category: infrastructure
-tools: [git, github_api, file_management]
-version: 1.0.0
-status: active
+tools: Read, Edit, Grep, Bash, Task, TodoWrite
 ---
 
 # Version Agent

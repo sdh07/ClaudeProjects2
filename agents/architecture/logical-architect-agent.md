@@ -1,14 +1,7 @@
 ---
 name: logical-architect-agent
-type: architecture
-domain: logical-architecture
-status: active
-version: 1.0.0
-dependencies:
-  - vision-agent
-  - orchestrator-agent
-  - methodology-agent
-  - knowledge-agent
+description: Specialized agent for ClaudeProjects2
+tools: Read, Edit, Grep, Bash, Task, TodoWrite
 ---
 
 # Logical Architect Agent

@@ -1,14 +1,7 @@
 ---
 name: vision-agent
-type: domain
-domain: product-vision
-status: active
-version: 1.0.0
-dependencies: 
-  - orchestrator-agent
-  - methodology-agent
-  - project-agent
-  - knowledge-agent
+description: Specialized agent for ClaudeProjects2
+tools: Read, Edit, Grep, Bash, Task, TodoWrite
 ---
 
 # Vision Agent

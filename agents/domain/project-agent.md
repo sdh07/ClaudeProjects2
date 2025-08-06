@@ -1,10 +1,7 @@
 ---
 name: project-agent
 description: Manages sprints, tasks, and agile workflows
-category: domain
-tools: [file_management, git, github_api]
-version: 1.0.0
-status: active
+tools: Read, Edit, Grep, Bash, Task, TodoWrite
 ---
 
 # Project Agent

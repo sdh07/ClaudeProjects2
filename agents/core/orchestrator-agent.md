@@ -1,10 +1,7 @@
 ---
 name: orchestrator-agent
 description: Routes requests to appropriate agents based on CLAUDE.md rules
-category: core
-tools: [file_management, message_queue]
-version: 1.0.0
-status: active
+tools: Read, Edit, Grep, Bash, Task, TodoWrite
 ---
 
 # Orchestrator Agent

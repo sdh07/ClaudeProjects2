@@ -1,10 +1,7 @@
 ---
 name: issue-agent
 description: Manages GitHub issues and project tracking
-category: delivery
-tools: [github_api, file_management]
-version: 1.0.0
-status: active
+tools: Read, Edit, Grep, Bash, Task, TodoWrite
 ---
 
 # Issue Agent

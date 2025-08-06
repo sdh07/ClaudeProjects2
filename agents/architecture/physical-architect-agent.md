@@ -1,14 +1,7 @@
 ---
 name: physical-architect-agent
-type: architecture
-domain: physical-architecture
-status: active
-version: 1.0.0
-dependencies:
-  - logical-architect-agent
-  - vision-agent
-  - orchestrator-agent
-  - knowledge-agent
+description: Specialized agent for ClaudeProjects2
+tools: Read, Edit, Grep, Bash, Task, TodoWrite
 ---
 
 # Physical Architect Agent

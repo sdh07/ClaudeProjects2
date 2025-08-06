@@ -1,10 +1,7 @@
 ---
 name: knowledge-agent
 description: Captures and retrieves project knowledge
-category: core
-tools: [file_management, obsidian]
-version: 1.0.0
-status: active
+tools: Read, Edit, Grep, Bash, Task, TodoWrite
 ---
 
 # Knowledge Agent

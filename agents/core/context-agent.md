@@ -1,10 +1,7 @@
 ---
 name: context-agent
 description: Manages context switching and state persistence for fast project transitions
-category: core
-tools: [file_management]
-version: 1.0.0
-status: active
+tools: Read, Edit, Grep, Bash, Task, TodoWrite
 ---
 
 # Context Agent

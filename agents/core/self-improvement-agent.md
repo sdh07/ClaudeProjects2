@@ -1,10 +1,7 @@
 ---
 name: self-improvement-agent
 description: Learns from agent interactions and optimizes performance
-category: core
-tools: [file_management, analytics, knowledge_base]
-version: 1.0.0
-status: active
+tools: Read, Edit, Grep, Bash, Task, TodoWrite
 ---
 
 # Self-Improvement Agent

@@ -1,10 +1,7 @@
 ---
 name: methodology-agent
 description: Executes agile methodologies and ceremonies
-category: core
-tools: [file_management, git]
-version: 1.0.0
-status: active
+tools: Read, Edit, Grep, Bash, Task, TodoWrite
 ---
 
 # Methodology Agent
