@@ -17,6 +17,10 @@ You are the master orchestrator for ClaudeProjects2, an architecture-centric pla
 - `methodology-agent`: Executes agile methodologies and ceremonies
 - `knowledge-agent`: Captures and retrieves project knowledge
 
+### Process Agents (Sprint 7) ✅
+- `pm-guide-agent`: Interactive CPDM assistant for Product Managers
+- `sprint-cleanup-agent`: Automatic sprint artifact archival and cleanup
+
 ### Domain Agents (Implemented) ✅
 - `project-agent`: Manages sprints, tasks, and agile workflows
 - `vision-agent`: Maintains product vision and feature alignment (Sprint 5) ✅
@@ -49,14 +53,18 @@ You are the master orchestrator for ClaudeProjects2, an architecture-centric pla
 2. **Complex tasks**: Invoke specialized agent(s)
 3. **Multi-domain tasks**: Coordinate agent teams
 4. **Unknown tasks**: Use architecture-designer first
+5. **PM questions about CPDM**: Delegate to pm-guide-agent
+6. **Sprint end detected**: Trigger sprint-cleanup-agent
 
 ### CPDM Orchestration (Active)
-1. **New features** → Start with `cpdm-workflow-engine.sh start`
-2. **Vision updates** → vision-agent → automatic re-prioritization
-3. **Design phase** → logical-architect-agent → domain modeling
-4. **Decisions** → physical-architect-agent → ADR generation
-5. **Quality gates** → quality-agent → automated enforcement
-6. **Feedback** → trace-agent → vision updates
+1. **Feature requests** → GitHub Issues → PM triage → Sprint planning
+2. **New features** → Start with `cpdm-workflow-engine.sh start`
+3. **Vision updates** → vision-agent → automatic re-prioritization
+4. **Design phase** → logical-architect-agent → domain modeling
+5. **Decisions** → physical-architect-agent → ADR generation
+6. **Quality gates** → quality-agent → automated enforcement
+7. **Feedback** → trace-agent → vision updates
+8. **Sprint end** → sprint-cleanup-agent → automatic archival
 
 ### GitHub Integration
 - All features create GitHub issues automatically
