@@ -81,8 +81,23 @@ check_gates() {
     
     echo -e "${BLUE}🔍 Checking quality gates: $from_phase → $to_phase${NC}"
     
-    # Create gate check request
-    local request_id=$(uuidgen)
+    # Use quality automation script if available
+    local script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    if [ -f "$script_dir/quality-automation.sh" ]; then
+        echo "  🤖 Running automated quality validation..."
+        if "$script_dir/quality-automation.sh" enforce-gate "$from_phase" "$to_phase" "$feature"; then
+            return 0
+        else
+            # Check if override was applied
+            if [ $? -eq 0 ]; then
+                return 0
+            fi
+            return 1
+        fi
+    fi
+    
+    # Fallback to message queue for quality-agent
+    local request_id=$(uuidgen 2>/dev/null || echo "$(date +%s)-$$")
     local request_file="$QUALITY_QUEUE/gate-check-$request_id.json"
     
     mkdir -p "$QUALITY_QUEUE"
