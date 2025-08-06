@@ -197,41 +197,82 @@ System-level capabilities:
 
 ### 1. Installation Structure
 ```
-~/ClaudeProjects2/
-├── agents/                    # System agents
-│   ├── core/                 # Always loaded
-│   ├── domain/               # Domain-specific
-│   └── infrastructure/       # System-level
-├── config/                   # Configuration
-│   ├── claude-desktop.json   # MCP config
-│   └── settings.json         # App settings
-└── runtime/                  # Runtime data
-    ├── cache/               # Performance cache
-    ├── logs/                # Agent logs
-    └── temp/                # Temporary files
+~/ClaudeProjects2/                   # System repository
+├── agents/                         # Source agents (development)
+│   ├── core/                      # Core system agents
+│   │   ├── orchestrator-agent.md
+│   │   ├── methodology-agent.md
+│   │   ├── knowledge-agent.md
+│   │   └── context-agent.md
+│   ├── domain/                    # Domain-specific agents
+│   │   ├── project-agent.md
+│   │   ├── vision-agent.md
+│   │   └── ...
+│   └── infrastructure/            # Infrastructure agents
+│       ├── version-agent.md
+│       ├── test-agent.md
+│       └── ...
+├── .claude/                       # Claude Code integration
+│   ├── agents/                   # Deployed agents (symlink → ../agents)
+│   └── settings.local.json       # Claude Code configuration
+├── scripts/                       # Deployment automation
+│   └── deploy-agents.sh          # Cross-platform deployment
+└── config/                       # System configuration
+    └── claude-desktop.json       # MCP server config
 
-~/.claude/agents/            # User's custom agents
-└── custom/                  # Personal agents
+~/.claude/agents/                  # User-global agent directory
+├── custom/                       # User's personal agents
+└── project-agents/               # Project-specific deployments
 
-~/Documents/ClaudeProjects2-Vault/  # Obsidian vault
+~/Documents/ClaudeProjects2-Vault/ # Obsidian vault
 ├── Projects/
 ├── Methodologies/
 ├── Knowledge/
 └── Analytics/
 ```
 
-### 2. Agent Loading Order
-1. Core agents (required)
-2. Project-specific agents
-3. User custom agents
-4. Domain agents (on-demand)
-5. Infrastructure agents (as needed)
+### 2. Agent Deployment Hierarchy
+```mermaid
+graph TB
+    subgraph "Development Environment"
+        A[/agents/ Source Directory]
+    end
+    
+    subgraph "Claude Code Runtime"
+        B[~/.claude/agents/ Global]
+        C[.claude/agents/ Project]
+    end
+    
+    subgraph "Loading Priority"
+        D[1. Project-specific agents]
+        E[2. User custom agents]  
+        F[3. System agents]
+    end
+    
+    A -->|deploy-agents.sh| C
+    A -->|manual install| B
+    C --> D
+    B --> E
+    A --> F
+    
+    style A fill:#ffd93d
+    style C fill:#4ecdc4
+    style B fill:#ff9800
+```
 
-### 3. Resource Allocation
+### 3. Agent Loading Order and Discovery
+1. **Project-specific agents** (`.claude/agents/`) - Highest priority
+2. **User custom agents** (`~/.claude/agents/custom/`) - Medium priority
+3. **System agents** (ClaudeProjects2 built-ins) - Base capability
+
+Claude Code's Task tool searches in this order and uses the first match found.
+
+### 4. Resource Allocation
 - **Memory**: 2GB typical, 4GB recommended
 - **CPU**: 2-4 cores for parallel agents
 - **Disk**: 1GB for system, 10GB+ for vault
 - **Network**: Local only, optional external
+- **Agent Deployment**: <10MB per project (mainly symlinks)
 
 ## Data Persistence Strategy
 
@@ -606,16 +647,206 @@ curl -sSL https://claudeprojects2.ai/install | bash
 # 5. Run verification tests
 ```
 
-### 2. Update Mechanism
-- Agent self-update capability
-- Methodology version checking
-- Backward compatibility
-- Rollback support
+### 2. Agent Update Architecture (Implemented)
 
-### 3. Platform Specifics
-- **macOS**: Native performance
-- **Windows**: WSL2 recommended
-- **Linux**: Full support planned
+#### Critical Discovery (Sprint 6)
+During Sprint 6 testing, we discovered that agents developed in `/agents/` were not accessible to Claude Code's Task tool. Claude Code requires agents to be deployed to specific directories to be invoked.
+
+#### Agent Deployment Strategy
+```mermaid
+graph LR
+    A[Development /agents/] -->|deploy-agents.sh| B[.claude/agents/]
+    B -->|symlink/copy| C[Claude Code Runtime]
+    C -->|Task tool| D[Agent Execution]
+    
+    style A fill:#ffd93d
+    style B fill:#4ecdc4
+    style C fill:#ff6b6b
+    style D fill:#4caf50
+```
+
+#### Deployment Components
+
+**1. Deploy Script (deploy-agents.sh)**
+- **Purpose**: Universal agent deployment across platforms
+- **Location**: `/scripts/deploy-agents.sh`
+- **Strategy**: Hybrid approach (symlink preferred, copy fallback)
+- **Cross-platform**: Supports macOS, Linux, Windows
+
+**2. Deployment Targets**
+```bash
+# Primary targets for agent deployment
+~/.claude/agents/        # User-global agents
+.claude/agents/          # Project-specific agents (symlinked)
+```
+
+**3. Platform-Specific Behavior**
+```yaml
+deployment_strategies:
+  unix_like:
+    method: symbolic_link
+    command: ln -s ../agents .claude/agents
+    benefits: 
+      - Instant updates
+      - Single source of truth
+      - No re-deployment needed
+      
+  windows_with_symlinks:
+    method: mklink_directory
+    command: mklink /D .claude\agents agents
+    requirements:
+      - Developer Mode OR
+      - Administrator rights OR
+      - WSL environment
+      
+  windows_fallback:
+    method: file_copy
+    command: cp -r agents .claude/agents
+    limitation: Requires re-deployment after changes
+```
+
+#### Deployment Architecture Details
+
+**1. Directory Structure**
+```
+project-root/
+├── agents/                    # Source agents (development)
+│   ├── core/
+│   │   ├── orchestrator-agent.md
+│   │   ├── methodology-agent.md
+│   │   └── ...
+│   ├── domain/
+│   │   ├── project-agent.md
+│   │   └── ...
+│   └── infrastructure/
+│       └── ...
+├── .claude/
+│   ├── agents/               # Deployed agents (symlink → ../agents)
+│   └── settings.local.json   # Claude Code configuration
+└── scripts/
+    └── deploy-agents.sh      # Deployment automation
+```
+
+**2. Agent Format Requirements**
+Agents must follow Claude Code's specification:
+```markdown
+---
+name: orchestrator-agent
+description: Master orchestrator for ClaudeProjects2
+tools: [Task, Read, Edit, Grep, Bash, TodoWrite]
+version: 2.1.0
+triggers:
+  - complex task coordination
+  - multi-agent orchestration
+---
+
+# Agent Instructions
+You are the master orchestrator...
+```
+
+**3. Deployment Process**
+```mermaid
+sequenceDiagram
+    participant Dev as Developer
+    participant Script as deploy-agents.sh
+    participant FS as File System
+    participant CC as Claude Code
+    
+    Dev->>Script: ./scripts/deploy-agents.sh
+    Script->>FS: Detect OS platform
+    Script->>FS: Clean existing .claude/agents/
+    Script->>FS: Try symbolic link creation
+    
+    alt Symlink Success
+        FS-->>Script: Link created
+        Script-->>Dev: ✅ Symlink deployment
+    else Symlink Fails
+        Script->>FS: Copy files instead
+        FS-->>Script: Files copied
+        Script-->>Dev: ⚠️ Copy deployment (re-run after changes)
+    end
+    
+    Dev->>CC: Use Task tool
+    CC->>FS: Load from .claude/agents/
+    FS-->>CC: Agent available
+    CC-->>Dev: Agent executed
+```
+
+**4. Cross-Platform Compatibility**
+```bash
+# OS Detection and Strategy Selection
+detect_os() {
+    case "$OSTYPE" in
+        linux-gnu*) echo "linux" ;;
+        darwin*)    echo "macos" ;;
+        cygwin|msys|win32) echo "windows" ;;
+        *) echo "unknown" ;;
+    esac
+}
+
+# Deployment Logic
+if ln -s ../agents .claude/agents 2>/dev/null; then
+    echo "✅ Symbolic link created"
+    DEPLOYMENT_TYPE="symlink"
+elif [[ "$OS" == "windows" ]]; then
+    # Try Windows mklink
+    if cmd.exe /c "mklink /D \"$TARGET\" \"$SOURCE\"" 2>/dev/null; then
+        echo "✅ Windows symlink created"
+        DEPLOYMENT_TYPE="symlink"
+    else
+        echo "⚠️ Falling back to copy mode"
+        cp -r agents .claude/agents
+        DEPLOYMENT_TYPE="copy"
+    fi
+else
+    # Unix fallback
+    cp -r agents .claude/agents
+    DEPLOYMENT_TYPE="copy"
+fi
+```
+
+#### Integration with Claude Code Architecture
+
+**1. Agent Discovery**
+- Claude Code scans `~/.claude/agents/` and `.claude/agents/`
+- Agents loaded based on YAML frontmatter metadata
+- Task tool can invoke any deployed agent
+
+**2. Agent Invocation**
+```typescript
+// How Claude Code invokes sub-agents
+async function invokeAgent(agentName: string, task: string) {
+  const agentPath = findAgent(agentName);  // Searches deployment directories
+  const agent = await loadAgent(agentPath);
+  return await executeAgent(agent, task);
+}
+```
+
+**3. Development Workflow**
+```mermaid
+graph TB
+    A[Edit Agent in /agents/] --> B{Deployment Type?}
+    B -->|Symlink| C[Changes Available Immediately]
+    B -->|Copy| D[Run deploy-agents.sh]
+    D --> C
+    C --> E[Test with Task Tool]
+    E --> F[Agent Works in Claude Code]
+    
+    style C fill:#4caf50
+    style F fill:#2196f3
+```
+
+### 3. Update Mechanism
+- **Automatic**: Symlink deployment provides instant updates
+- **Manual**: Copy deployment requires re-running deploy script
+- **Version tracking**: Git-based with agent metadata
+- **Rollback support**: Git checkout + re-deployment
+
+### 4. Platform Specifics
+- **macOS**: Full symlink support, optimal performance
+- **Linux**: Full symlink support, optimal performance  
+- **Windows**: Symlink with Developer Mode/Admin rights, copy fallback
+- **WSL2**: Recommended for Windows development
 
 ## Migration Path
 

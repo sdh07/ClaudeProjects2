@@ -4,13 +4,15 @@
 
 ## Table of Contents
 1. [Quick Start](#quick-start)
-2. [Your Role in Each Phase](#your-role-in-each-phase)
-3. [Key Decision Points](#key-decision-points)
-4. [Using the PM Dashboard](#using-the-pm-dashboard)
-5. [Common Workflows](#common-workflows)
-6. [Commands You Need](#commands-you-need)
-7. [What to Expect](#what-to-expect)
-8. [Troubleshooting](#troubleshooting)
+2. [Feature Request Management](#feature-request-management)
+3. [Your Role in Each Phase](#your-role-in-each-phase)
+4. [Key Decision Points](#key-decision-points)
+5. [Using the PM Dashboard](#using-the-pm-dashboard)
+6. [Common Workflows](#common-workflows)
+7. [Commands You Need](#commands-you-need)
+8. [What to Expect](#what-to-expect)
+9. [Using Helper Agents](#using-helper-agents)
+10. [Troubleshooting](#troubleshooting)
 
 ---
 
@@ -35,15 +37,58 @@ CPDM is **fully integrated with GitHub**, meaning:
 ### Your First Day with CPDM
 
 ```bash
-# 1. Check your active features
+# 1. Check new feature requests from community
+gh issue list --label "needs-triage" --label "feature-request"
+
+# 2. Check your active features
 ./scripts/cpdm-workflow-engine.sh status
 
-# 2. View the vision dashboard
+# 3. View the vision dashboard (or ask pm-guide-agent)
 cat docs/architecture/01-product-vision/vision-dashboard.md
+# OR: Use Task tool with pm-guide-agent "Show me today's dashboard"
 
-# 3. Start a new feature
+# 4. Start a new feature (from approved request)
 ./scripts/cpdm-workflow-engine.sh start "feature-name" "description"
 ```
+
+---
+
+## Feature Request Management
+
+### NEW: Community-Driven Features
+
+Features now flow from community/team requests through GitHub:
+
+```mermaid
+graph LR
+    A[Community] -->|Creates Issue| B[Feature Request]
+    B -->|You Review| C[Triage]
+    C -->|Approve| D[Sprint Planning]
+    C -->|Backlog| E[Future]
+    C -->|Reject| F[Won't Fix]
+```
+
+### Weekly Feature Review Process
+
+```bash
+# Every Monday morning:
+# 1. View pending requests
+gh issue list --label "needs-triage" --label "feature-request"
+
+# 2. For each request, evaluate
+./scripts/cpdm-workflow-engine.sh evaluate-feature [issue-number]
+
+# 3. Apply decision labels
+gh issue edit [number] --add-label "approved,priority-2-important"
+# OR
+gh issue close [number] --comment "Not aligned with vision"
+```
+
+### Priority Labels
+- `priority-1-critical`: Next sprint
+- `priority-2-important`: Within 2 sprints
+- `priority-3-nice`: When possible
+- `priority-4-later`: Future consideration
 
 ---
 
@@ -268,11 +313,28 @@ Privacy First          3 features  Planning  78% 🟡
 
 ## Common Workflows
 
-### 1. Starting a New Feature
+### 1. Processing Feature Requests (NEW)
 
 ```bash
-# Step 1: Start the feature
-./scripts/cpdm-workflow-engine.sh start "feature-name" "Business description"
+# Weekly review of community requests
+# Step 1: View pending
+gh issue list --label "needs-triage"
+
+# Step 2: Evaluate each
+./scripts/cpdm-workflow-engine.sh evaluate-feature [issue-number]
+
+# Step 3: Label decision
+gh issue edit [number] --add-label "approved,priority-2"
+
+# Step 4: Convert approved to sprint work
+./scripts/cpdm-workflow-engine.sh feature-to-sprint [issue-number] [sprint-number]
+```
+
+### 2. Starting a New Feature (From Approved Request)
+
+```bash
+# Step 1: Start from approved issue
+./scripts/cpdm-workflow-engine.sh start-from-issue [issue-number]
 
 # Step 2: System validates automatically
 # You'll receive notification if approval needed
@@ -444,6 +506,40 @@ To prepare for Sprint 6 where we'll test drive CPDM:
 
 ---
 
+## Using Helper Agents
+
+### NEW: pm-guide-agent
+Your personal CPDM assistant that helps you navigate the process:
+
+```bash
+# Use with Task tool:
+"pm-guide-agent: Where are we in the sprint?"
+"pm-guide-agent: What needs my attention today?"
+"pm-guide-agent: Help with quality gate override"
+"pm-guide-agent: Show me pending feature requests"
+"pm-guide-agent: Explain this CPDM phase"
+```
+
+### NEW: sprint-cleanup-agent
+Automatically manages sprint artifacts:
+
+```bash
+# Runs automatically at sprint end, or manually:
+"sprint-cleanup-agent: Archive sprint 6"
+"sprint-cleanup-agent: Clean up current directory"
+"sprint-cleanup-agent: Generate sprint summary"
+```
+
+### Feature Request Dashboard
+```bash
+# See all feature requests at different stages
+gh issue list --label "feature-request" --label "approved"
+gh issue list --label "feature-request" --label "backlog"
+gh issue list --label "feature-request" --label "in-progress"
+```
+
+---
+
 ## Support & Help
 
 ### Getting Help
@@ -497,6 +593,6 @@ Print and keep handy:
 ---
 
 *This guide is part of the CPDM methodology*
-*Version: 1.0*
-*Updated: 2025-02-06*
-*For Sprint 6 test drive preparation*
+*Version: 2.0*
+*Updated: 2025-08-06*
+*Sprint 7: Now with community feature requests and helper agents*

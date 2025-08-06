@@ -1,0 +1,82 @@
+name: 🚀 Feature Request
+description: Suggest a new feature for ClaudeProjects2
+title: "[FEATURE]: "
+labels: ["feature-request", "needs-triage"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a feature! The PM will review and prioritize based on value and alignment with vision.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What problem does this feature solve?
+      placeholder: "As a [user type], I struggle with [problem] when [scenario]..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: How would you like to see this solved?
+      placeholder: "I would like to be able to..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: What other solutions have you considered?
+      placeholder: "I've also thought about..."
+    validations:
+      required: false
+
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Expected Impact
+      description: How many users would benefit?
+      options:
+        - Just me
+        - My team (2-10 people)
+        - Many users (10-100)
+        - Everyone using the project
+    validations:
+      required: true
+
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: Urgency
+      description: When do you need this?
+      options:
+        - Nice to have someday
+        - Would be helpful soon
+        - Blocking my work
+        - Critical for production
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: Any other context, screenshots, or examples?
+      placeholder: "In our workflow, we typically..."
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      description: Are you willing to help?
+      options:
+        - label: I'm willing to help implement this feature
+        - label: I can help test this feature
+        - label: I can provide more details if needed
