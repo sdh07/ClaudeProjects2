@@ -1,0 +1,14 @@
+{
+  "id": "fb-1754480411-2503",
+  "timestamp": "2025-08-06T11:40:11Z",
+  "type": "bug",
+  "category": "agent",
+  "source": "user",
+  "message": "Quality gates are too slow during phase transitions",
+  "severity": "high",
+  "status": "processed",
+  "phase": "feedback",
+  "sprint": "",
+  "tags": [],
+  "processed_at": "2025-08-06T11:40:18Z"
+}

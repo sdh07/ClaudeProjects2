@@ -1,0 +1,13 @@
+{
+    "id": "fb-1754480415-2554",
+    "timestamp": "2025-08-06T11:40:15Z",
+    "type": "feature",
+    "category": "workflow",
+    "source": "user",
+    "message": "Add automated rollback capability for failed deployments",
+    "severity": "medium",
+    "status": "pending",
+    "phase": "feedback",
+    "sprint": "",
+    "tags": []
+}

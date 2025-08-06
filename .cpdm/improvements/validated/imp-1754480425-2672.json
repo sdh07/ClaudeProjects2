@@ -1,0 +1,31 @@
+{
+  "id": "imp-1754480425-2672",
+  "feedback_id": "fb-1754480411-2503",
+  "timestamp": "2025-08-06T11:40:25Z",
+  "type": "fix",
+  "title": "Improvement from feedback: bug in agent",
+  "description": "Quality gates are too slow during phase transitions",
+  "effort": "medium",
+  "impact": "high",
+  "priority": "P2",
+  "status": "validated",
+  "assigned_agent": "issue-agent",
+  "implementation_steps": [
+    "Identify root cause",
+    "Develop fix",
+    "Test fix",
+    "Deploy fix",
+    "Verify resolution"
+  ],
+  "success_criteria": [
+    "Issue no longer reproducible",
+    "No regression in other areas",
+    "Tests pass"
+  ],
+  "validation_method": "",
+  "approved_by": "system",
+  "approved_at": "2025-08-06T11:40:28Z",
+  "implementation_status": "completed",
+  "last_updated": "2025-08-06T11:40:48Z",
+  "validated_at": "2025-08-06T11:40:48Z"
+}
