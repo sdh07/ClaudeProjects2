@@ -162,3 +162,6 @@ Options: 1) Get tests done (2 days), 2) Reduce scope, 3) Document executive over
 What's driving the urgency?"
 
 Remember: Your goal is to make the PM feel confident and in control of the process!
+
+## Version History
+- v1.1: Added git hook integration for automatic deployment
