@@ -8,7 +8,14 @@
    cd ClaudeProjects2
    ```
 
-2. **Deploy agents for Claude Code**
+2. **Install Git Hooks (Recommended)**
+   ```bash
+   ./scripts/install-git-hooks.sh
+   ```
+   
+   This sets up automatic agent deployment when you commit changes.
+
+3. **Deploy agents for Claude Code**
    ```bash
    ./scripts/deploy-agents.sh
    ```
@@ -16,9 +23,10 @@
    This will:
    - Create `.claude/agents` as a symlink to `/agents/` (on Mac/Linux)
    - Or copy agents if symlinks aren't available (Windows without admin)
-   - Make all 17 project agents available in Claude Code
+   - Make all 19 project agents available in Claude Code
+   - With git hooks installed, this happens automatically on commits!
 
-3. **Restart Claude Code**
+4. **Restart Claude Code**
    - Exit Claude Code if running
    - Start Claude Code in the project directory
    - Verify agents with `/agents` command
